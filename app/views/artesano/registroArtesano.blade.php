@@ -16,7 +16,7 @@
 							{{ Form::text('nombre', null, array('placeholder' => 'Nombre - - ApellidoPaterno - - ApellidoMaterno','class' => 'form-control')) }} <br>
 						</div>
 
-						<div class="form-control col-md-2">
+						<div class="col-md-2 form-control">
 							{{ Form::label('sexo', 'Sexo') }} 
 							{{Form::select('sexo', array('Masculino' => 'Masculino','Femenino' => 'Femenino',), null, array('class' =>'form-control'))}}
 						</div>
