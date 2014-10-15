@@ -11,111 +11,152 @@
 						<div align=center><h3>INSTITUTO OAXAQUEÑO DE LAS ARTESANÍAS</h3></div>
 						<div class="bg-orga col-md-12">FICHA DE REGISTRO DE ARTESANOS</div>
 					<div class="col-md-12">	
-						<div class="form-control col-md-6">
+						<div class="col-md-6">
+							<div class="form-control">
 							{{ Form::label ('nombre', 'Nombre Completo') }}
 							{{ Form::text('nombre', null, array('placeholder' => 'Nombre - - ApellidoPaterno - - ApellidoMaterno','class' => 'form-control')) }} <br>
+							</div>
 						</div>
 
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('sexo', 'Sexo') }} 
 							{{Form::select('sexo', array('Masculino' => 'Masculino','Femenino' => 'Femenino',), null, array('class' =>'form-control'))}}
+							</div>
 						</div>
 					</div>
 					<div class="col-md-12">
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('fechanace', 'Fecha nacimiento') }}
 							{{ Form::input('date','fechanace', null, array('class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('grupoetnico', 'Grupo Étnico') }}
 							{{ Form::select('grupoetnico', array('1' => 'Triki trakes',),null,array('class' => 'form-control')) }}
+							</div>
 						</div>
 
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('civil', 'Estado Civil') }} 
 							{{Form::select('civil', array('Soltero' => 'Soltero','Casado' => 'Casado',), null, array('class' =>'form-control'))}}
+							</div>
 						</div>
 					</div>	
-						<div class="form-control col-md-4">
+						<div class="col-md-4">
+							<div class="form-control">
 							{{ Form::label('curp', 'CURP') }}
 							{{ Form::text('curp', null, array('placeholder' => 'Ingrese CURP','class' => 'form-control')) }}
+							</div>
 						</div>
 
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('RFC', 'RFC') }}
 							{{ Form::text('RFC', null, array('placeholder' => 'Ingrese RFC','class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('credencial', 'IFE') }}
 							{{ Form::text('ife', null, array('placeholder' => 'Ingrese Cred de elector','class' => 'form-control')) }}
-
+							</div>
 						</div>	
 
-						<div class="form-control col-md-8">
+						<div class="col-md-8">
+							<div class="form-control">
 							{{ Form::label('domicilio', 'Domicilio') }}
 							{{ Form::text('domicilio', null, array('placeholder' => 'introduce calle y número','class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('cp', 'C.P.') }}
 							{{ Form::text('cp', null, array('placeholder' => 'Ingrese CP','class' => 'form-control')) }}
+							</div>
 						</div>
 
-						<div class="form-control col-md-4">
+						<div class="col-md-4">
+							<div class="form-control">
 							{{ Form::label('localidad', 'Localidad') }}
 							{{ Form::text('localidad', null, array('placeholder' => 'Seleccione localidad','class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-4">
+						<div class="col-md-4">
 							{{ Form::label('municipio', 'Municipio') }}
 							{{ Form::text('municipio', null, array('placeholder' => 'Municipio','class' => 'form-control')) }} 
 						</div>
 					
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('distrito', 'Distrito') }}
 							{{ Form::text('distrito', null, array('placeholder' => 'Lugar nacimiento','class' => 'form-control')) }}
+							</div>
 						</div>
 					
-						<div class="form-control col-md-3">
+						<div class="col-md-3">
+							<div class="form-control">
 							{{ Form::label('region', 'Región') }}
 							{{ Form::text('region', null, array('placeholder' => 'Región','class' => 'form-control')) }}
+							</div>
 						</div>
 
-							<div class="form-control col-md-1">
+							<div class="col-md-1">
+								<div class="form-control">
 							{{ Form::label('lada', 'Lada') }}
 							{{ Form::text('lada', null, array('placeholder' => 'Lada','class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('tel', 'Telefono') }}
 							{{ Form::text('tel', null, array('placeholder' => 'Teléfono','class' => 'form-control')) }}
+							</div>
 						</div>
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 						{{ Form::label('tipoTel', 'Tipo Teléfono') }} <br>
 						{{Form::select('tipoTel', array('Casa' => 'Casa','Celular' => 'Celular','Caseta' => 'Caseta','Vecino' => 'Vecino',), null, array('class' =>'form-control'))}}
 						</div>
+						</div>
 												
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 						{{ Form::label('taller', 'Tipo Taller') }} <br>
 						{{Form::select('taller', array('Individual' => 'Individual','Familiar' => 'Familiar',), null, array('class' =>'form-control'))}}
+							</div>
 						</div>
 
-						<div class="form-control col-md-2">
-						{{ Form::label('rama', 'Rama Artesanal') }} <br>
-						{{Form::select('rama', array('1' => 'Alfareria','2' => '','3' => '','4' => '',), null, array('class' =>'form-control'))}}
+						<div class="col-md-2">
+							<div class="form-control">
+							{{ Form::label('rama', 'Rama Artesanal') }} <br>
+							{{Form::select('rama', array('1' => 'Alfareria','2' => '','3' => '','4' => '',), null, array('class' =>'form-control'))}}
+							</div>
 						</div>
 
 						<div class="col-md-12">
 							<p><h4>PRODUCTOS ELABORADOS</h4></p>
-							<div class="form-control col-md-4">
-							{{ Form::label('producto', 'Nombre del Producto') }}
-							{{ Form::text('producto', null, array('placeholder' => 'Producto','class' => 'form-control')) }}
-						</div>
-						<div class="form-control col-md-2">
+							<div class="col-md-4">
+								<div class="form-control">
+								{{ Form::label('producto', 'Nombre del Producto') }}
+								{{ Form::text('producto', null, array('placeholder' => 'Producto','class' => 'form-control')) }}
+								</div>
+							</div>
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('prod', 'Producción Mensual') }}
 							{{ Form::text('prod', null, array('placeholder' => 'Producción mensual','class' => 'form-control')) }}
+							</div>
 						</div>
 
-						<div class="form-control col-md-2">
+						<div class="col-md-2">
+							<div class="form-control">
 							{{ Form::label('costo', 'Costo Aproximado') }}
 							{{ Form::text('costo', null, array('placeholder' => 'Costo','class' => 'form-control')) }}
+							</div>
 						</div>
 							
 						</div>
@@ -124,65 +165,85 @@
 				<div class="col-md-9">
 					<p><h4>SELECCIONE 1 O MÁS OPCIONES</h4></p>
 					<h5>LA MATERIA PRIMA LA COMPRA EN:</h5>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('matprim1', '1'); }}
 						{{ Form::label('matprim', 'MISMA LOCALIDAD') }}
-						
+						</div>
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('matprim2', '2'); }}
 						{{ Form::label('matprim', 'OTRO MUNICIPIO') }}
+						</div>
 						
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('matprim3', '3'); }}
 						{{ Form::label('matprim', 'CAPITAL DEL ESTADO') }}
+						</div>
 						 
 					</div>
 				</div>
 				<div class="col-md-9">
 
 					<h5>SUS PRODUCTOS LOS VENDE A NIVEL:</h5>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('venta1', '4'); }}
 						{{ Form::label('venta', 'NACIONAL') }}
+						</div>
 						
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('venta2', '5'); }}
 						{{ Form::label('venta', 'ESTATAL') }}
+						</div>
 						
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('venta3', '6'); }}
 						{{ Form::label('venta', 'REGIONAL') }}
+						</div>
 						
 					</div>
 				</div>
 				<div class="col-md-9">
 
 					<h5>SUS COMPRADORES SON:</h5>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('compr1', '7'); }}
 						{{ Form::label('compr', 'MAYORISTAS') }}
+						</div>
 						
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('compr2', '8'); }}
 						{{ Form::label('compr', 'MINORISTAS') }}
+						</div>
 						
 					</div>
-					<div class="form-control col-md-3">
+					<div class="col-md-3">
+						<div class="form-control">
 						{{ Form::radio('compr3', '9'); }}
 						{{ Form::label('compr', 'OTROS') }}
+						</div>
 						
 					</div>
 				</div>
 
 
-					<div class="form-control col-md-6"><br>
+					<div class="col-md-6">
+						<div class="form-control">
+						<br>
 						{{ Form::label('observ', 'OBSERVACIONES') }}
 						{{ Form::text('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control')) }}<br>
+						</div>
 					</div>
 					
 				<div class="col-md-12">
