@@ -4,8 +4,8 @@
     @endsection 
 
 @section('contenido')
-	<div class="container wellr">
-		<form class="form-horizontal" role="form" method='POST'>
+	<div class="container wellr form-group">
+		<form class="form-horizontal" role="form" method="POST" id="formalta">
 				<div class="col-md-12">
 					
 						<div align=center><h3>INSTITUTO OAXAQUEÑO DE LAS ARTESANÍAS</h3></div>
@@ -60,30 +60,26 @@
 							{{ Form::text('cp', null, array('placeholder' => 'Ingrese CP','class' => 'form-control')) }}
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-4">
 							{{ Form::label('localidad', 'Localidad') }}
 							{{ Form::text('localidad', null, array('placeholder' => 'Seleccione localidad','class' => 'form-control')) }}
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-4">
 							{{ Form::label('municipio', 'Municipio') }}
 							{{ Form::text('municipio', null, array('placeholder' => 'Municipio','class' => 'form-control')) }} 
 						</div>
 					
-						<div class="col-md-5">
+						<div class="col-md-3">
 							{{ Form::label('distrito', 'Distrito') }}
 							{{ Form::text('distrito', null, array('placeholder' => 'Lugar nacimiento','class' => 'form-control')) }}
 						</div>
 					
-						<div class="col-md-5">
+						<div class="col-md-3">
 							{{ Form::label('region', 'Región') }}
 							{{ Form::text('region', null, array('placeholder' => 'Región','class' => 'form-control')) }}
 						</div>
-					
-						<div class="col-md-12">
-						<h4>Productos Elaborados</h4>
-						
-						</div>
-						<div class="col-md-1">
+
+							<div class="col-md-1">
 							{{ Form::label('lada', 'Lada') }}
 							{{ Form::text('lada', null, array('placeholder' => 'Lada','class' => 'form-control')) }}
 						</div>
@@ -98,11 +94,30 @@
 												
 						<div class="col-md-2">
 						{{ Form::label('taller', 'Tipo Taller') }} <br>
-						{{Form::select('taller', array('Individual' => 'Individual','Familiar' => 'Familiar','Organización' => 'Organización',), null, array('class' =>'form-control'))}}
+						{{Form::select('taller', array('Individual' => 'Individual','Familiar' => 'Familiar',), null, array('class' =>'form-control'))}}
 						</div>
+
 						<div class="col-md-2">
 						{{ Form::label('rama', 'Rama Artesanal') }} <br>
 						{{Form::select('rama', array('1' => 'Alfareria','2' => '','3' => '','4' => '',), null, array('class' =>'form-control'))}}
+						</div>
+
+						<div class="col-md-12">
+							<p><h4>PRODUCTOS ELABORADOS</h4></p>
+							<div class="col-md-4">
+							{{ Form::label('producto', 'Nombre del Producto') }}
+							{{ Form::text('producto', null, array('placeholder' => 'Producto','class' => 'form-control')) }}
+						</div>
+						<div class="col-md-2">
+							{{ Form::label('prod', 'Producción Mensual') }}
+							{{ Form::text('prod', null, array('placeholder' => 'Producción mensual','class' => 'form-control')) }}
+						</div>
+
+						<div class="col-md-2">
+							{{ Form::label('costo', 'Costo Aproximado') }}
+							{{ Form::text('costo', null, array('placeholder' => 'Costo','class' => 'form-control')) }}
+						</div>
+							
 						</div>
 					</div>
 				
@@ -110,61 +125,71 @@
 					<p><h4>SELECCIONE 1 O MÁS OPCIONES</h4></p>
 					<h5>LA MATERIA PRIMA LA COMPRA EN:</h5>
 					<div class="col-md-3">
+						{{ Form::radio('matprim1', '1'); }}
 						{{ Form::label('matprim', 'MISMA LOCALIDAD') }}
-						{{ Form::checkbox('matprim', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('matprim2', '2'); }}
 						{{ Form::label('matprim', 'OTRO MUNICIPIO') }}
-						{{ Form::checkbox('matprim', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('matprim3', '3'); }}
 						{{ Form::label('matprim', 'CAPITAL DEL ESTADO') }}
-						{{ Form::checkbox('matprim', 'value'); }} 
+						 
 					</div>
 				</div>
 				<div class="col-md-9">
 
 					<h5>SUS PRODUCTOS LOS VENDE A NIVEL:</h5>
 					<div class="col-md-3">
+						{{ Form::radio('venta1', '4'); }}
 						{{ Form::label('venta', 'NACIONAL') }}
-						{{ Form::checkbox('venta', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('venta2', '5'); }}
 						{{ Form::label('venta', 'ESTATAL') }}
-						{{ Form::checkbox('venta', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('venta3', '6'); }}
 						{{ Form::label('venta', 'REGIONAL') }}
-						{{ Form::checkbox('venta', 'value'); }}
+						
 					</div>
 				</div>
 				<div class="col-md-9">
 
 					<h5>SUS COMPRADORES SON:</h5>
 					<div class="col-md-3">
+						{{ Form::radio('compr1', '7'); }}
 						{{ Form::label('compr', 'MAYORISTAS') }}
-						{{ Form::checkbox('check4', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('compr2', '8'); }}
 						{{ Form::label('compr', 'MINORISTAS') }}
-						{{ Form::checkbox('compr', 'value'); }}
+						
 					</div>
 					<div class="col-md-3">
+						{{ Form::radio('compr3', '9'); }}
 						{{ Form::label('compr', 'OTROS') }}
-						{{ Form::checkbox('compr', 'value'); }}
+						
 					</div>
 				</div>
 
 
-					<div class="col-md-6">
+					<div class="col-md-6"><br>
 						{{ Form::label('observ', 'OBSERVACIONES') }}
-						{{ Form::text('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control')) }}
+						{{ Form::text('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control')) }}<br>
 					</div>
 					
 				<div class="col-md-12">
-				<div class="col-md-2">
-					<button type="submit" class="btn btn-primary">Registrar</button>
-				</div></div>
+					<button type="submit" class="btn btn-primary btn-lg pull-right">
+						 Registrar 
+						<span class="glyphicon glyphicon-ok"></span></button>
+				</div>
 		</form>
 	</div>
 
@@ -172,87 +197,92 @@
 
 @section('scripts')
 
+<script src="/js/bootstrapValidator.js" type="text/javascript"></script>
+	<script src="js/es_ES.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#formalta').bootstrapValidator({
+		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		            nombre: {
+		                validators: {
+		                    notEmpty: {},
+		                	regexp:{
+		                    regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+		                        message: 'Por favor verifica el campo'
+		                    }
+		                    }},
+		            cp:{
+		                validators: {
+		                    integer: {},
+							stringLength:{
+								min: 5,
+								max: 5,
+								message: 'El CP debe tener 5 dígitos'
+							}
+		                }
+		            },
+		            curp:{
+						validators:{
+		                    stringLength: {
+		                        min: 18,
+		                        max:18,
+		                        message:'Se requieren 18 caracteres para CURP'
+		                    },
+		                    notEmpty:{}
+						}
+		            },
+		            RFC: {
+		                validators: {
+		                    stringLength: {
+		                        min: 13,
+		                        max:13,
+		                        message:'Se requieren 13'
+		                    }
+		                }
+		            },
+		            email: {
+		                validators: {
+		                    emailAddress: {}
+		                }
+		            },
+		            fechanace: {
+		                validators: {
+		                    notEmpty: {},
+		                    date: {
+		                        format: 'DD/MM/YYYY'
+		                    }
+		                }
+		            },
+		            tel: {
+		                validators: {
+		                    notEmpty: {},
+							integer:{}
+		                }},
+		                lada: {
+		                validators: {
+		                    integer: {},
+		                    stringLength: {
+		                        min: 3,
+		                        max: 3,
+		                        message:'Verifica'
+		                }
+		            }
+		            }
+		        }
+		    }
+		    
+		     )
 
-<script>
-$(document).ready(function() {
-    $('#formularioalta').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            nombre: {
-                validators: {
-                    notEmpty: {}
-                }
-            },
-            cp:{
-                validators: {
-                    integer: {},
-					stringLength:{
-						min: 5,
-						max: 5,
-						message: 'El CP debe tener 5 dígitos'
-					}
-                }
-            },
-            curp:{
-				validators:{
-                    stringLength: {
-                        min: 18,
-                        max:18,
-                        message:'Se requieren 18 caracteres para CURP'
-                    },
-                    notEmpty:{}
-				}
-            },
-            RFC: {
-                validators: {
-                    stringLength: {
-                        min: 13,
-                        max:13,
-                        message:'Se requieren 13'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    emailAddress: {}
-                }
-            },
-            birthday: {
-                validators: {
-                    notEmpty: {},
-                    date: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }
-            },
-            telefono: {
-                validators: {
-                    notEmpty: {},
-					integer:{}
-                }
-            }
-        }
-    });
+
 }
-);
-</script>
+    );
+	</script>
 
-<style type="text/css">
-.wellr {
-	background-color: rgba(51, 48, 45, 0.1)!important;
-	margin-bottom: 20px;
-	padding: 9px;
-  border-radius: 3px;
-
-}
-</style>
-
-<script type="text/javascript" src="js/bootstrapValidator.js"></script>
-<script type="text/javascript" src="js/language/es_ES.js"></script>
 @stop
 

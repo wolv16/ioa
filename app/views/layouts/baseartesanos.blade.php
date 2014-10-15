@@ -4,9 +4,11 @@
     <title> @yield('titulo') </title>
 <!--<link rel="stylesheet" href="../css/jquery.jqzoom.css" type="text/css">-->
     <meta http-equiv="Content-Type">
-    {{HTML::style('assets/css/bootstrap.css')}}
+    {{HTML::style('css/bootstrap.css')}}
     {{HTML::style('css/style.css')}}
-    {{HTML::style('assets/css/bootstrap-theme.css')}}
+    {{HTML::style('css/bootstrap-theme.css')}}
+    {{HTML::script('js/jquery-1.11.1.js');}}
+    {{HTML::script('js/bootstrap.js');}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -31,7 +33,7 @@
                         <a href="artesano" class="sf-with-ul">REGISTROS<span class="sf-sub-indicator"></span></a>
                     </li>
                     <li id="menu-item-48164" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48164">
-                        <a href="#" class="sf-with-ul">PADRÓN<span class="sf-sub-indicator"> »</span></a>
+                        <a href="taller" class="sf-with-ul">PADRÓN<span class="sf-sub-indicator"> »</span></a>
                     </li>
                     <li id="menu-item-48175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48175">
                         <a href="concurso" class="sf-with-ul">CONCURSOS<span class="sf-sub-indicator"> »</span></a>

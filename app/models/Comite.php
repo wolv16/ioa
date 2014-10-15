@@ -10,7 +10,7 @@ class Comite extends Eloquent {
 public function Artesanos(){
 return $this->belongsToMany('Artesano')->withPivot('cargo');
 }
-public function Organizaciones(){
+public function Organizacion(){
 return $this->belongsTo('Organizacion');
 }
 }

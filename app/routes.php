@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/inicio', function()
 {
-	return "hola";
+	return View::make("artesano.inicio");
 });
 
 
 
-Route::get('/base',function()
+Route::get('/por',function()
 {
-	return View::make('layouts.base');
+	return View::make('artesano.PorOrganizacion');
 });
 
 Route::get('/base2',function()
@@ -36,10 +36,6 @@ Route::get('users', function()
     return View::make('users')->with('users', $users);
 });
 
-Route::get('/organizacion', function()
-{
-    return View::make('artesano.organizacion');
-});
 
 
 Route::get('/personaConcurso', function()
@@ -58,6 +54,11 @@ Route::post('feria','RegistroFeriaController@post_nuevo');
 
 Route::get('taller','RegistroTallerController@get_nuevo');
 Route::post('taller','RegistroTallerController@post_nuevo');
+
+Route::get('organizacion','RegistroOrganizacionController@get_nuevo');
+Route::post('organizacion','RegistroOrganizacionController@post_nuevo');
+
+Route::post('por','AltaArtesanoController@post_buscorg');
 
 
 

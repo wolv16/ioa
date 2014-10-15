@@ -2,7 +2,7 @@
 
 class Organizacion extends Eloquent {
 public $timestamps = false;
-protected $table = 'organizacion';
+protected $table = 'organizaciones';
 protected $fillable = array('nombre', 'telmunicipio');
 
 public function Comite(){
