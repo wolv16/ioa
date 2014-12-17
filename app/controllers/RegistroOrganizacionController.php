@@ -20,7 +20,10 @@ $Organizacion = Organizacion::create(array(
 $Comite = Comite::create(array(
 		'organizacion_id' => $Organizacion->id));
 	 
-	
+	if(!is_null($Organizacion))
+	return Redirect::back()->with('status', 'ok_create');
+else
+	return Redirect::back()->with('status', 'fail_create');
 
 }
 

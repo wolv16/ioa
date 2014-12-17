@@ -18,11 +18,6 @@ Route::get('/inicio', function()
 
 
 
-Route::get('/por',function()
-{
-	return View::make('artesano.PorOrganizacion');
-});
-
 Route::get('/base2',function()
 {
 	return View::make('layouts.baseartesanos');
@@ -38,13 +33,10 @@ Route::get('users', function()
 
 
 
-Route::get('/personaConcurso', function()
-{
-    return View::make('artesano.personaConcurso');
-});
+
 
 Route::get('artesano','AltaArtesanoController@get_nuevo');
-Route::post('artesano','AltaArtesanoController@post_nuevo');
+Route::post('artesano/registro','AltaArtesanoController@post_nuevo');
 
 Route::get('concurso','RegistroConcursoController@get_nuevo');
 Route::post('concurso','RegistroConcursoController@post_nuevo');
@@ -58,8 +50,27 @@ Route::post('taller','RegistroTallerController@post_nuevo');
 Route::get('organizacion','RegistroOrganizacionController@get_nuevo');
 Route::post('organizacion','RegistroOrganizacionController@post_nuevo');
 
-Route::post('por','AltaArtesanoController@post_buscorg');
+Route::post('buscorg','AltaArtesanoController@post_buscorg');
+Route::get('por','AltaArtesanoController@get_nuevopor');
+Route::post('por/registro','AltaArtesanoController@post_nuevopor');
 
+Route::post('artesano/municipio','selectmunicipiosController@post_mun');
+
+Route::get('editarArtesano','EditarArtesanoController@editar');
+Route::post('editarArtesano','EditarArtesanoController@buscar');
+
+Route::post('buscaConcurso','RegistroenConcursoController@buscaConcurso');
+
+Route::get('/personaConcurso','RegistroenConcursoController@get_nuevo');
+Route::post('curp','RegistroenConcursoController@post_Curp');
+Route::post('personaConcurso','RegistroenConcursoController@post_nuevo');
+Route::post('buscaconcursante','RegistroenConcursoController@post_buscaconcursante');
+
+
+Route::get('editarEventos','editarEventoController@get_nuevo');
+
+Route::get('ArtesanoEnFeria','ArtesanoEnFeriaController@get_ArtesanoEnFeria');
+Route::post('ArtesanoEnFeria','ArtesanoEnFeriaController@buscar');
 
 
 

@@ -2,55 +2,31 @@
 class EditarArtesanoController extends BaseController {
 public function editar()
 {
-return View::make('artesano.editar');
+return View::make('artesano/editarartesano');
 }
 public function buscar()
 {
-$nombre = Input::get('nombre');
-$paterno = Input::get('paterno');
-$materno = Input::get('materno');
-$artesano = Artesano::whereHas('persona',function($q) use ($nombre,$paterno,$materno)
+$nombre = Input::get('artesanombre');
+$paterno = Input::get('artesapaterno');
+$materno = Input::get('artesamaterno');
+$fecha= Input::get('fechanace');
+$artesano = Artesano::whereHas('persona',function($q) use ($nombre,$paterno,$materno,$fecha)
 {
 $q->where('nombre','like','%'.$nombre.'%','and')
 ->where('nombre','like','%'.$paterno.'%','and')
-->where('nombre','like','%'.$materno.'%');
+->where('nombre','like','%'.$materno.'%')
+->where('fechanacimiento','=',$fecha);
 })
-->get();
+->first();
 
-		if(count($artesano) == 1){
-			$artesano = $artesano -> first();
-			$matricula = $artesano -> matricula;
-				$nummatricula = "";
-				if(!is_null($matricula))
-					$nummatricula = $matricula -> matricula;
-				$dato = array(
-					'success' => true,
-					'id' => $artesano -> id,
-					'nombre' => $artesano -> persona -> nombre,
-					'fechanace' => $artesano -> persona -> fechanace,
-					'sexo' => $artesano -> persona -> sexo,
-					'curp' => $artesano -> persona -> curp,
-					'cp' => $artesano -> persona -> cp,
-					);
-		}
-		else if(count($artesano) > 1){
-			$dato = array();
-			foreach ($artesano as $artesano) {
-				$dato[] = array(
-					'id' => $artesano -> id,
-					'nombre' => $artesano -> persona -> nombre,
-					'fechanace' => $artesano -> persona -> fechanace,
-					'sexo' => $artesano -> persona -> sexo,
-					'curp' => $artesano -> persona -> curp,
-					'cp' => $artesano -> persona -> cp,
-					);
+$artesano["persona"]["localidad_id"]=Localidad::find($artesano->persona->localidad_id)->nombre;
+$artesano["persona"]["grupoetnico_id"]=Gruposetnico::find($artesano->persona->grupoetnico_id)->nombre;
+$artesano["persona"]["rama_id"]=Rama::find($artesano->persona->rama_id)->nombre;
+$artesano["documentos"]=Documento::where('persona_id','=',$artesano->persona_id)->get();
+$artesano["compras"]=$artesano->comprasyventas()->get();
+$artesano["organizacion"]=$artesano->organizacion;
 
-			}
-		}
-		else
-		$dato = array('success' => false);
-//asñkdnvnlnvlernvpwrnvpnwrvnkvnwñvnqpihvpowhvwoehvohevhwrovhwprhbworhbhwrpobh
-		return Response::json($dato);
+		return Response::json($artesano);
 
 	}
 }

@@ -14,9 +14,11 @@ public function post_nuevo()
 
 $Taller = Taller::create(array(
 	'nombre'=> Input::get('taller'), 
-	'fecha'=> Input::get('fecha'),
+	'fechainicio'=> Input::get('fecha1'),
+	'fechafin'=> Input::get('fecha2'),
 	'maestro'=> Input::get('maestro'))); 
 	 
-	
+		return View::make('respuestas.tallerresponse')->with('Taller',$Taller);
+
 
 }}

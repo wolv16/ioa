@@ -3,7 +3,7 @@
 class Artesano extends Eloquent {
 public $timestamps = false;
 protected $table = 'artesanos';
-protected $fillable = array('RFC', 'estadocivil', 'fecharegistro', 'ife', 'taller', 'tipotelefono', 'persona_id');
+protected $fillable = array('RFC', 'estadocivil', 'fecharegistro', 'ine', 'taller', 'tipotelefono', 'persona_id');
 
 public function persona(){
 return $this->belongsTo('Persona');
@@ -20,7 +20,7 @@ return $this->hasMany('Producto');
 }
 
 public function Concursos(){
-return $this->belongsToMany('Concurso')->withPivot('pieza','descripcionpremio','fecharegistro','numeroregistro','entregompieza','produccionmensual','costounitario','categoria');;
+return $this->belongsToMany('Concurso')->withPivot('premio','numregistro','categoria','pieza','costounitario','avaluo','entrego','fechadev','calidad','recibio','fecharegistro', 'observaciones');
 }
 public function Talleres(){
 return $this->belongsToMany('Taller');
@@ -28,7 +28,7 @@ return $this->belongsToMany('Taller');
 public function Ferias(){
 return $this->belongsToMany('Feria');
 }
-public function Comprayventas(){
+public function comprasyventas(){
 return $this->belongsToMany('Comprasyventa');
 }
 
