@@ -1,209 +1,678 @@
 
 @extends('layouts.baseartesanos')
-    @section('titulo') IOA-Registro
+    @section('titulo') REGISTRO EN CONCURSO
     @endsection 
-
+ 
 @section('contenido')
 	<div class="container wellr">
-		<form class="form-horizontal" role="form" method='POST'>
-				<div class="col-md-12">
+			
+
+		<div class="pull-left col-md-4" id="concursos">
+      		@if(isset($concursos))
+      		<div class="bg-orga col-md-12 text-center">CONCURSOS PRÓXIMOS</div>
+        	@foreach($concursos as $concurso)
+            <div class="container bg-evento col-md-12">
+            <div class="col-md-7">
+           	<p id='idconc' class='hidden'>{{$concurso->id}}</p>
+              
+	            <h5><i class="fa fa-trophy fa-lg pull-left"></i><strong>{{$concurso->nombre}}</strong></h5>
+	            <h5>FECHA: {{$concurso->fecha}}</h5>
+	            <h5>NIVEL: {{$concurso->nivel}}</h5>
+	            <h5>DÍA DE PREMIACIÓN: {{$concurso->premiacion}}</h5>
+          	</div>
+              	<div class="col-md-5">
+              		<img style="border: 0pt; margin-left: 0px; margin-bottom: 10px; margin-top: 15px;" src="./imgs/event5.png"></img>
+          		</div>            
+            </div>
+          	@endforeach    
+      		@endif
+    	</div>
+
+			<div class="col-md-4 col-md-offset-2 wellr" style="text-align:center;">
+				<img id="123" class="botones" title="Artesano" src="./imgs/nueva.png"></img>
+				<img id="1234"class="botones" style="border: 0pt; margin-left: 0px; margin-bottom: 10px;" title="Persona" src="./imgs/inscrito.png"></img>
+			</div>
+
+				
+<!-- /////////////////-->		
+				
+				<div class="col-md-8 pull-right wellr" id="formalta" url="buscaconcursante">
+					<div class="bg-orga col-md-12 text-center">DATOS DEL PARTICIPANTE</div>
+
+					<form data-toggle="validator" role="form" method="POST" id="formalta">	
 					
-						<div align=center><h3>INSTITUTO OAXAQUEÑO DE LAS ARTESANÍAS</h3></div>
-						<div class="bg-orga col-md-12">FICHA DE REGISTRO DE CONCURSOS</div>
 					<div class="col-md-12">	
-						<div class="col-md-6">
-							{{ Form::label ('nombre', 'Nombre Completo') }}
-							{{ Form::text('nombre', null, array('placeholder' => 'Nombre - - ApellidoPaterno - - ApellidoMaterno','class' => 'form-control')) }} <br>
+						
+						<div class="col-md-8 form-group">
+							
+							{{ Form::label ('nombre', 'Nombre Completo',array('class' => 'control-label')) }}
+							{{ Form::text('nombre', null, array('placeholder' => 'Nombre - - ApellidoPaterno - - ApellidoMaterno','class' => 'form-control mayuscula')) }}
 						</div>
-
-						<div class="col-md-2">
-							{{ Form::label('sexo', 'Sexo') }} 
-							{{Form::select('sexo', array('1' => 'Masculino','2' => 'Femenino',), null, array('class' =>'form-control'))}}
+						
+						<div class="col-md-3 form-group">
+							{{ Form::label('sexo', 'Sexo',array('class' => 'control-label')) }} 
+							{{Form::select('sexo', array('' => 'Seleccione','Masculino' => 'Masculino','Femenino' => 'Femenino',), null, array('class' =>'form-control'))}}
 						</div>
 					</div>
+
 					<div class="col-md-12">
-						<div class="col-md-3">
-							{{ Form::label('fechanace', 'Fecha nacimiento') }}
-							{{ Form::input('date','fechanace', null, array('class' => 'form-control')) }}
-						</div>
-						<div class="col-md-2">
-							{{ Form::label('grupoetnico', 'Grupo Étnico') }}
-							{{ Form::select('grupoetnico', array('1' => 'Seleccione grupo',),null,array('class' => 'form-control')) }}
-						</div>
 
-						
+						<div class="form-group col-md-4 fecha">
+				          {{ Form::label('fechanace', 'fechanace',array('class' => 'control-label')) }}
+				          <div class="input-group date" id="datetimePicker">
+				            {{ Form::text('fechanace', null, array('class' => 'form-control','placeholder' => 'YYYY-MM-DD', 'data-date-format' => 'YYYY-MM-DD')) }}
+				            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				          </div>
+				        </div>
+
+						<div class="col-md-3 form-group">
+							{{ Form::label('grupoetnico', 'Grupo Étnico',array('class' => 'control-label')) }}
+							{{ Form::select('grupoetnico', $grupos, null, array('class' => 'form-control')) }}
+
+						</div>
 					</div>	
-									
-						<div class="col-md-8">
-							{{ Form::label('domicilio', 'Domicilio') }}
-							{{ Form::text('domicilio', null, array('placeholder' => 'introduce calle y número','class' => 'form-control')) }}
+
+					<div class="col-md-12">
+						<div id="idcurp" class="col-md-5 form-group">	
+							{{ Form::label('curp', 'CURP') }}
+							{{ Form::text('curp', null, array('id' => 'curp', 'placeholder' => 'Ingrese CURP','class' => 'form-control')) }}
 						</div>
-						<div class="col-md-2">
-							{{ Form::label('cp', 'C.P.') }}
-							{{ Form::text('cp', null, array('placeholder' => 'Ingrese CP','class' => 'form-control')) }}
+						<div class="col-md-7 form-group">
+						{{ Form::label('domicilio', 'Domicilio') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-home"></i></div>
+						{{ Form::text('domicilio', null, array('placeholder' => 'introduce calle y número','class' => 'form-control')) }}
+						</div>
 						</div>
 
-						<div class="col-md-5">
-							{{ Form::label('localidad', 'Localidad') }}
-							{{ Form::text('localidad', null, array('placeholder' => 'Seleccione localidad','class' => 'form-control')) }}
-						</div>
-						<div class="col-md-5">
+					</div>
+
+					<div class="col-md-12">
+
+						<div class="col-md-4 form-group">
 							{{ Form::label('municipio', 'Municipio') }}
-							{{ Form::text('municipio', null, array('placeholder' => 'Municipio','class' => 'form-control')) }} 
+							{{ Form::select('municipio',$municipios, null, array('class' => 'form-control','id'=>'selectmun')) }} 
 						</div>
-					
-						<div class="col-md-5">
-							{{ Form::label('distrito', 'Distrito') }}
-							{{ Form::text('distrito', null, array('placeholder' => 'Lugar nacimiento','class' => 'form-control')) }}
-						</div>
-					
-						<div class="col-md-5">
-							{{ Form::label('region', 'Región') }}
-							{{ Form::email('region', null, array('placeholder' => 'Región','class' => 'form-control')) }}
-						</div>
-					
-						<div class="col-md-12">
-						<h4>Productos Elaborados</h4>
 						
-						</div>
-						<div class="col-md-1">
-							{{ Form::label('lada', 'Lada') }}
-							{{ Form::text('lada', null, array('placeholder' => 'Lada','class' => 'form-control')) }}
-						</div>
-						<div class="col-md-2">
-							{{ Form::label('tel', 'Telefono') }}
-							{{ Form::text('tel', null, array('placeholder' => 'Teléfono','class' => 'form-control')) }}
-						</div>
-						<div class="col-md-2">
-						{{ Form::label('sangre', 'Tipo Teléfono') }} <br>
-						{{Form::select('tiposangre', array('1' => 'Casa','2' => 'Celular','3' => 'Caseta','4' => 'Vecino',), null, array('class' =>'form-control'))}}
-						</div>
-												
-						<div class="col-md-2">
-						{{ Form::label('taller', 'Tipo Taller') }} <br>
-						{{Form::select('taller', array('1' => 'Individual','2' => 'Familiar','3' => 'Organización',), null, array('class' =>'form-control'))}}
-						</div>
-						<div class="col-md-2">
-						{{ Form::label('rama', 'Rama Artesanal') }} <br>
-						{{Form::select('rama', array('1' => '','2' => '','3' => '','4' => '',), null, array('class' =>'form-control'))}}
-						</div>
+						<div class="form-group col-md-4">
+								{{ Form::label('localidad', 'Localidad') }}
+								{{ Form::select('localidad',array(), null, array('class' => 'form-control', 'id'=>'selectloc')) }}
+							</div>
 					</div>
-				
-				
-				<div class="col-md-9">
 
-					<h5>SUS COMPRADORES SON:</h5>
-					<div class="col-md-3">
-						{{ Form::label('compr', 'MAYORISTAS') }}
-						{{ Form::checkbox('compr', 'value'); }}
+					<div class="col-md-12">
+					<div class="form-group col-md-2">
+						{{ Form::label('cp', 'C.P.') }}
+						{{ Form::text('cp', null, array('placeholder' => 'CP','class' => 'form-control')) }}
+						</div>
+
+					<div class="col-md-3 form-group">
+						{{ Form::label('lada', 'Lada') }}
+					<div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-phone"></i></div>
+						{{ Form::text('lada', null, array('placeholder' => 'Lada','class' => 'form-control')) }}
 					</div>
-					<div class="col-md-3">
-						{{ Form::label('compr', 'MINORISTAS') }}
-						{{ Form::checkbox('compr', 'value'); }}
 					</div>
-					<div class="col-md-3">
-						{{ Form::label('compr', 'OTROS') }}
-						{{ Form::checkbox('compr', 'value'); }}
+					
+					<div class="col-md-3 form-group">
+						{{ Form::label('tel', 'Telefono') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-phone"></i></div>
+						{{ Form::text('tel', null, array('placeholder' => 'Teléfono','class' => 'form-control')) }}
+					</div>
+					</div>
+
+						<div class="col-md-3 form-group">
+						
+						{{ Form::label('rama', 'Rama Artesanal') }} <br>
+						{{Form::select('rama', $ramas, null, array('class' =>'form-control'))}}
+						</div>
+					</div>
+
+						<div class="col-md-12 wellr">
+							<h4>DATOS DE LA PIEZA</h4>
+						<div class="col-md-12">
+
+						<div class="col-md-4 form-group">	
+							{{ Form::label('categoria', 'Categoría') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
+							{{ Form::textarea('categoria', null, array('placeholder' => 'Ingrese categoría','class' => 'form-control', 'size' => '3x2')) }}	
+						</div>
+						</div>
+	
+						<div class="col-md-7 form-group">	
+							{{ Form::label('pieza', 'Pieza') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
+							{{ Form::textarea('pieza', null, array('placeholder' => 'Descripción y nombre de la pieza','class' => 'form-control', 'size' => '3x2')) }}
+						</div>
+						</div>
+						<div class="col-md-3 form-group">
+							{{ Form::label('costo', 'Costo Aprox') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+							{{ Form::text('costo', null, array('class' => 'form-control')) }}
+						</div>
+						</div>
+
+						<div class="col-md-3 form-group">
+							{{ Form::label('avaluo', 'Avaluo') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+							{{ Form::text('avaluo', null, array('class' => 'form-control')) }}
+						</div>
+						</div>
+
+						</div>
+
+					<div class="col-md-12">
+					<div class="col-md-7 form-group">
+						
+						{{ Form::label('observ', 'OBSERVACIONES') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-eye"></i></div>
+						{{ Form::textarea('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control', 'size' => '6x2')) }}<br>
+						</div>
+					</div>
+					
+						<div class="col-md-2 form-group hidden">
+							{{ Form::label('concid', 'CONCURSO') }}
+							{{ Form::text('concid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						
+						<div class="col-md-4 form-group">
+							{{ Form::label('calidad', 'Calidad en general') }}
+							<div class="input-group">
+							<div class="input-group-addon"><i class="fa fa-star-half-o"></i></div>
+							{{ Form::text('calidad', null, array('placeholder' => 'Calidad de la pieza','class' => 'form-control')) }}
+						</div>
+						</div>
+						
+					<div class="col-md-6 form-group">
+						{{ Form::label('recibio', 'Recibió') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-male"></i></div>
+						{{ Form::text('recibio', null, array('placeholder' => 'Nombre de quien recibe la pieza','class' => 'form-control')) }}
+						</div>
 					</div>
 				</div>
+			</div>
 
+				<div class="col-md-12 form-group">
+					<button id="btonen" type="submit" class="btn btn-primary btn-lg pull-right">
+						 Registrar 
+						<span class="glyphicon glyphicon-ok"></span></button>
+				</div>
+					</form>
+				</div>
 
-					<div class="col-md-6">
+<!--////////////////////////-->
+
+			<div class="col-md-8 pull-right hidden" id="inscrito">
+				<div class="col-sm-12 wellr">
+			
+				{{ Form::open(array('id' => 'buscaconcursante', 'url' => 'buscaconcursante')) }}
+						<div class="col-md-12">
+
+						<div class="bg-orga col-md-12">BÚSQUEDA DEL CONCURSANTE</div>
+						
+						<div class="col-md-6 form-group">
+						{{ Form::label('artesanombre', 'Nombre(s)',array('class' => 'control-label')) }}
+						{{ Form::text('artesanombre', null, array('placeholder' => 'introduce nombre','class' => 'form-control')) }}
+						</div>
+
+						<div class="col-md-6 form-group">
+						{{ Form::label('artesapaterno', 'Apellido paterno') }}
+						{{ Form::text('artesapaterno', null, array('placeholder' => 'introduce apellido paterno','class' => 'form-control')) }}
+						</div>
+
+						<div class="form-group col-sm-6 fecha">
+			         	{{ Form::label('fechanace', 'Fecha de Nacimiento',array('class' => 'control-label')) }}
+			          	<div class="input-group date" id="datetimePicker1">
+			            {{ Form::text('fechanace', null, array('class' => 'form-control','placeholder' => 'YYYY-MM-DD', 'data-date-format' => 'YYYY-MM-DD')) }}
+			            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			          	</div>
+						</div>
+
+						<div class="col-md-6 form-group">
+						{{ Form::label('artesamaterno', 'Apellido materno') }}
+						{{ Form::text('artesamaterno', null, array('placeholder' => 'introduce apellido materno','class' => 'form-control')) }}
+						</div>
+					</div>
+
+			
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary pull-right">
+							<span class="glyphicon glyphicon-search"></span> 
+							Buscar 
+						</button>
+					</div>
+				
+
+				{{Form::close()}}
+				</div>
+
+	
+
+					<div id="inscrito_div" class="col-md-12 wellr hidden">
+							<h4>DATOS DE LA PIEZA</h4>
+						<div class="col-md-12">
+						{{ Form::open(array('id' => 'inscrito', 'url' => 'buscaconcursante')) }}
+
+						<div class="col-md-4 form-group">	
+							{{ Form::label('categoria', 'Categoría') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
+							{{ Form::textarea('categoria', null, array('placeholder' => 'Ingrese categoría','class' => 'form-control', 'size' => '3x2')) }}	
+						</div>
+						</div>
+
+						<div class="col-md-7 form-group">	
+							{{ Form::label('pieza', 'Pieza') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
+							{{ Form::textarea('pieza', null, array('placeholder' => 'Descripción y nombre de la pieza','class' => 'form-control', 'size' => '3x2')) }}
+						</div>
+						</div>
+
+						<div class="col-md-12">
+						<div class="col-md-3 form-group">
+							{{ Form::label('costo', 'Costo Aprox') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+							{{ Form::text('costo', null, array('class' => 'form-control')) }}
+						</div>
+						</div>
+
+						<div class="col-md-3 form-group">
+							{{ Form::label('avaluo', 'Avaluo') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
+							{{ Form::text('avaluo', null, array('class' => 'form-control')) }}
+						</div>
+						</div>
+						</div>
+						
+
+					<div class="col-md-7 form-group">
+						
 						{{ Form::label('observ', 'OBSERVACIONES') }}
-						{{ Form::text('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control')) }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-eye"></i></div>
+						{{ Form::textarea('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control', 'size' => '6x2')) }}<br>
+						</div>
 					</div>
 					
-				<div class="col-md-12">
-				<div class="col-md-2">
-					<button type="submit" class="btn btn-primary">Registrar</button>
-				</div></div>
-		</form>
-	</div>
+					<div class="col-md-4 form-group">
+						{{ Form::label('calidad', 'Calidad en general') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-star-half-o"></i></div>
+						{{ Form::text('calidad', null, array('placeholder' => 'Calidad de la pieza','class' => 'form-control')) }}
+					</div>
+					</div>
+						
+					<div class="col-md-6 form-group">
+						{{ Form::label('recibio', 'Recibió') }}
+						<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-male"></i></div>
+						{{ Form::text('recibio', null, array('placeholder' => 'Nombre de quien recibe la pieza','class' => 'form-control')) }}
+						</div>
+					</div>
 
+					<div class="col-md-12 form-group">
+					<button type="submit" class="btn btn-primary btn-lg pull-right">
+						 Registrar 
+						<span class="glyphicon glyphicon-ok"></span></button>
+					</div>
+
+					</form>
+
+						</div>
+					</div>
+					
+				</div>
+</div>
 @stop
 
 @section('scripts')
 
+<style type="text/css" media="screen">
+.fecha i{
+    right: 55px !important;
+  }
+	.tok{
+		top: 17px !important;
+		right: 23px !important;
+	}
+	textarea{
+		resize:none !important;
+	}
 
-<script>
+</style>
+<script src="js/bootstrapValidator.js" type="text/javascript"></script>
+	<script src="js/es_ES.js" type="text/javascript"></script>
+	
+<script type="text/javascript">
 $(document).ready(function() {
-    $('#formularioalta').bootstrapValidator({
+
+	$('#datetimePicker').datetimepicker({
+        language: 'es',
+        pickTime: false
+    });
+    $('#datetimePicker1').datetimepicker({
+        language: 'es',
+        pickTime: false
+    });
+
+	$('#buscaconcursante').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
+            valid: 'glyphicon glyphicon-ok tok',
+            invalid: 'glyphicon glyphicon-remove tok',
+            validating: 'glyphicon glyphicon-refresh tok'
         },
         fields: {
-            nombre: {
+            artesanombre: {
                 validators: {
-                    notEmpty: {}
+                    regexp:{
+                    regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+                        message: 'Por favor verifica el campo'
+                    }
+                    }},
+            artesapaterno:{
+                validators: {
+                    notEmpty: {},
+                	regexp:{
+                    regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+                        message: 'Por favor verifica el campo'
+                    }
+                    }},
+            artesamaterno:{
+				validators: {
+                    regexp:{
+                    regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+                        message: 'Por favor verifica el campo'
+                    }
+                    }
+                },
+            fechanace: {
+                validators: {
+                    notEmpty: {},
+                    date: {
+                        format: 'YYYY-MM-DD'
+                    }
                 }
-            },
-            cp:{
-                validators: {
-                    integer: {},
+            }		            
+
+        }
+    })
+	.on('success.form.bv', function(e) {
+        e.preventDefault();
+		$.post($(this).attr('action'), $(this).serialize(), function(json) {
+			console.log(json);
+			$('#inscrito_div').removeClass('hidden');
+		}, 'json');
+	});
+	$('#formalta').bootstrapValidator({
+	    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	    feedbackIcons: {
+	        valid: 'glyphicon glyphicon-ok tok',
+	        invalid: 'glyphicon glyphicon-remove tok',
+	        validating: 'glyphicon glyphicon-refresh tok'
+	    },
+	    fields: {
+	        nombre: {
+	            validators: {
+	                notEmpty: {},
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+	        cp:{
+	            validators: {
+	                integer: {},
 					stringLength:{
 						min: 5,
 						max: 5,
 						message: 'El CP debe tener 5 dígitos'
 					}
-                }
-            },
-            curp:{
+	            }
+	        },
+	        curp:{
 				validators:{
-                    stringLength: {
-                        min: 18,
-                        max:18,
-                        message:'Se requieren 18 caracteres para CURP'
-                    },
-                    notEmpty:{}
+	                stringLength: {
+	                    min: 18,
+	                    max:18,
+	                    message:'Se requieren 18 caracteres para CURP'
+	                },
+	                notEmpty:{}
 				}
-            },
-            RFC: {
-                validators: {
-                    stringLength: {
-                        min: 13,
-                        max:13,
-                        message:'Se requieren 13'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    emailAddress: {}
-                }
-            },
-            birthday: {
-                validators: {
-                    notEmpty: {},
-                    date: {
-                        format: 'DD/MM/YYYY'
-                    }
-                }
-            },
-            telefono: {
-                validators: {
-                    notEmpty: {},
-					integer:{}
-                }
-            }
-        }
+	        },
+	        RFC: {
+	            validators: {
+	                stringLength: {
+	                    min: 13,
+	                    max:13,
+	                    message:'Se requieren 13'
+	                }
+	            }
+	        },
+	        fechanace: {
+	            validators: {
+	                notEmpty: {},
+	                date: {
+	                    format: 'YYYY-MM-DD'
+	                }
+	            }
+	        },
+	        tel: {
+	            validators: {
+	                integer:{}
+	            }},
+	            lada: {
+	            validators: {
+	                integer: {},
+	                stringLength: {
+	                    min: 3,
+	                    max: 3,
+	                    message:'Verifica'
+	            }
+	        }
+	        },
+	        sexo:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        concid:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        estado:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        grupoetnico:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        rama:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        categoria:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        pieza:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        costo:{
+	        	validators: {
+	        		integer: {},
+	        		notEmpty:{}
+	        	}
+	        },
+	        	avaluo:{
+	        	validators: {
+	        		integer: {},
+	        		notEmpty:{}
+	        	}
+	        },
+	        observ: {
+	            validators: {
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+	        recibio: {
+	            validators: {
+	                notEmpty: {},
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+	        calidad: {
+	            validators: {
+	                notEmpty: {},
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }}
+
+	    }
+	});
+
+	$('#inscrito').bootstrapValidator({
+	    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	    feedbackIcons: {
+	        valid: 'glyphicon glyphicon-ok tok',
+	        invalid: 'glyphicon glyphicon-remove tok',
+	        validating: 'glyphicon glyphicon-refresh tok'
+	    },
+	    fields: {
+	    	observ: {
+	            validators: {
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+	        recibio: {
+	            validators: {
+	                notEmpty: {},
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+	        calidad: {
+	            validators: {
+	                notEmpty: {},
+	            	regexp:{
+	                regexp:/^[a-zA-Z áéíóúñÑÁÉÍÓÚ]+$/,
+	                    message: 'Por favor verifica el campo'
+	                }
+	                }},
+            categoria:{
+		    	validators: {
+		    		notEmpty:{}
+		    	}
+			        },
+	        pieza:{
+	        	validators: {
+	        		notEmpty:{}
+	        	}
+	        },
+	        costo:{
+	        	validators: {
+	        		integer: {},
+	        		notEmpty:{}
+	        	}
+	        },
+	        avaluo:{
+	        	validators: {
+	        		integer: {},
+	        		notEmpty:{}
+	        	}
+	        }
+	    }
+	});
+
+	$('.mayuscula').focusout(function() {
+		$(this).val($(this).val().toUpperCase());
+	});
+});
+
+$('#datetimePicker').on('dp.change dp.show', function(e) {
+        $('#formalta').bootstrapValidator('revalidateField', 'fechanace');
     });
-}
-);
+$('#datetimePicker1').on('dp.change dp.show', function(e) {
+        $('#buscaconcursante').bootstrapValidator('revalidateField', 'fechanace');
+    });
+$('.bg-evento').click(function(){
+	$('.bg-evento').removeClass('sombreado-evento');
+	$(this).addClass('sombreado-evento');
+	$('[name=concid]').val($(this).find('#idconc').text());
+	$('#formalta').bootstrapValidator('revalidateField', 'concid');
+});
+
+$('#123').click(function(){
+	$('.botones').removeClass('elegido');
+	$(this).addClass('elegido');
+	$('#inscrito').addClass('hidden');
+	$('#formalta').removeClass('hidden');
+
+});
+
+$('#1234').click(function(){
+	$('.botones').removeClass('elegido');
+	$(this).addClass('elegido');
+	$('#inscrito').removeClass('hidden');
+	$('#formalta').addClass('hidden');
+
+});
 </script>
 
-<style type="text/css">
-.wellr {
-	background-color: rgba(51, 48, 45, 0.1)!important;
-	margin-bottom: 20px;
-	padding: 9px;
-  border-radius: 3px;
+<script type="text/javascript" charset="utf-8">
+$( "#selectmun" ).change(function () {
+	$.post("<?php echo URL::to('artesano/municipio'); ?>", 'id='+$( "#selectmun option:selected" ).val(), function(json) {
+		 $( "#selectloc" ).html('');
+		$(json).each(function(){
+			$( "#selectloc" ).append( '<option value="'+this.id+'">'+this.nombre+'</option>')
+		});
+	}, 'json');
+}).change();
+</script>
 
-}
-</style>
+<script>
+	$( "#curp" ).focusout(function() {
+		var curp = $(this).val();
+		$.post('curp',{curp:curp}, function(json) {
+			if (!json.success) {
+				$('#idcurp').addClass('has-error');
+				$('[name=curp]').val('');
+				$('#formalta').bootstrapValidator('revalidateField','curp');
+				$('[name=curp]').focus();
+				$('[name=curp]').closest('div').find('small').html('La CURP '+curp+' ya se encuentra registrada');
+			}
+		}, 'json');
+	})
+</script>
 
-<script type="text/javascript" src="js/bootstrapValidator.js"></script>
-<script type="text/javascript" src="js/language/es_ES.js"></script>
 @stop

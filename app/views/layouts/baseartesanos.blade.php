@@ -7,8 +7,15 @@
     {{HTML::style('css/bootstrap.css')}}
     {{HTML::style('css/style.css')}}
     {{HTML::style('css/bootstrap-theme.css')}}
+    {{HTML::style('font-awesome/css/font-awesome.css');  }}
     {{HTML::script('js/jquery-1.11.1.js');}}
     {{HTML::script('js/bootstrap.js');}}
+    {{HTML::script('js/moment.js');}}
+    {{HTML::script('js/bootstrap-datetimepicker.js');}}
+    {{HTML::script('js/bootstrap-datetimepicker.es.js');}}
+    {{HTML::style('css/bootstrap-datetimepicker.min.css');}}
+    {{HTML::script('js/sweet-alert.js');}}
+    {{HTML::style('css/sweet-alert.css');}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -27,7 +34,7 @@
             <div class="menu">
                 <ul id="menu-menu-1" class="sf-menu sf-js-enabled sf-shadow">
                     <li id="menu-item-48096" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-48096">
-                        <a >IOA</a>
+                        <a href="inicio" class="sf-with-ul">IOA<span class="sf-sub-indicator"></span></a>
                     </li>
                     <li id="menu-item-48155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48155">
                         <a href="artesano" class="sf-with-ul">REGISTROS<span class="sf-sub-indicator"></span></a>
