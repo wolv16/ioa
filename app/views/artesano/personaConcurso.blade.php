@@ -171,7 +171,7 @@
 			{{ Form::close() }}
 		</div>
 <!--////////////////////////-->
-		<div class="col-md-8 pull-right hidden" id="inscrito">
+		<div class="col-md-8 pull-right hidden" id="inscritod">
 			<div class="col-sm-12 wellr">
 				{{ Form::open(array('id' => 'buscaconcursante', 'url' => 'buscaconcursante')) }}
 					<div class="col-md-12">
@@ -207,7 +207,7 @@
 			<div id="inscrito_div" class="col-md-12 wellr hidden">
 				<h4>DATOS DE LA PIEZA</h4>
 				<div class="col-md-12">
-					{{ Form::open(array('id' => 'inscrito', 'url' => 'buscaconcursante')) }}
+					{{ Form::open(array('url' => 'personaConcurso2','role' => 'form','id' => 'inscrito','class' => 'class')) }}
 						<div class="col-md-4 form-group">	
 							{{ Form::label('categoria', 'Categoría') }}
 							<div class="input-group">
@@ -260,11 +260,14 @@
 							</div>
 						</div>
 						<div class="col-md-12 form-group">
-							<button type="submit" class="btn btn-primary btn-lg pull-right">
+							<button type="submit" class="btn btn-primary btn-lg pull-right" id="btner">
 								 Registrar 
 								<span class="glyphicon glyphicon-ok"></span>
 							</button>
 						</div>
+						{{ Form::text('idpersona', null, array('class' => 'hidden')) }}
+						{{ Form::text('idartesano', null, array('class' => 'hidden')) }}
+						{{ Form::text('concid', null, array('class' => 'hidden')) }}
 					{{ Form::close() }}
 				</div>
 			</div>
@@ -345,8 +348,19 @@ $(document).ready(function() {
 	.on('success.form.bv', function(e) {
         e.preventDefault();
 		$.post($(this).attr('action'), $(this).serialize(), function(json) {
-			console.log(json);
 			$('#inscrito_div').removeClass('hidden');
+			if(json.error){
+				swal('Error', 'Persona no encontrada', 'error');
+				$('#inscrito_div').addClass('hidden');
+			}
+			else{
+				$('#inscrito').data('bootstrapValidator').resetForm(true);
+				$('[name = idpersona]').val(json.id);
+				if(json.artesano)
+					$('[name = idartesano]').val(json.artesano.id);
+				else
+					$('[name = idartesano]').val("");
+			}
 		}, 'json');
 	});
 	$('#formalta').bootstrapValidator({
@@ -554,6 +568,19 @@ $(document).ready(function() {
 	        	}
 	        }
 	    }
+	})
+	.on('success.form.bv', function(e) {
+        e.preventDefault();
+        console.log($('#inscrito').attr('action'))
+        if($('[name = concid').val() == "")
+        	swal('Error', 'Aun no seleccionas un concurso', 'error');
+        else
+		$.post($('#inscrito').attr('action'), $('#inscrito').serialize(), function(json) {
+			if(json.error)
+				swal('Error', 'Esta persona ya esta inscrita', 'error');
+			else
+				swal('Operacion completada correctamente', '', 'success');
+		}, 'json');
 	});
 
 	$('.mayuscula').focusout(function() {
@@ -572,13 +599,13 @@ $('.bg-evento').click(function(){
 	$(this).addClass('sombreado-evento');
 	$('[name=concid]').val($(this).find('#idconc').text());
 	$('#formalta').bootstrapValidator('revalidateField', 'concid');
-	$('#btonen').prop( "disabled", false );
+	$('#btonen , #btner').prop( "disabled", false );
 });
 
 $('#123').click(function(){
 	$('.botones').removeClass('elegido');
 	$(this).addClass('elegido');
-	$('#inscrito').addClass('hidden');
+	$('#inscritod').addClass('hidden');
 	$('#formalta').removeClass('hidden');
 
 });
@@ -586,7 +613,7 @@ $('#123').click(function(){
 $('#1234').click(function(){
 	$('.botones').removeClass('elegido');
 	$(this).addClass('elegido');
-	$('#inscrito').removeClass('hidden');
+	$('#inscritod').removeClass('hidden');
 	$('#formalta').addClass('hidden');
 
 });

@@ -65,6 +65,7 @@ Route::get('/personaConcurso','RegistroenConcursoController@get_nuevo');
 Route::post('curp','RegistroenConcursoController@post_Curp');
 Route::post('personaConcurso','RegistroenConcursoController@post_nuevo');
 Route::post('buscaconcursante','RegistroenConcursoController@post_buscaconcursante');
+Route::post('personaConcurso2','RegistroenConcursoController@post_personaconcursos');
 
 
 Route::get('editarEventos','editarEventoController@get_nuevo');

@@ -95,21 +95,37 @@ public function post_Curp()
 			->get())->with('concursos',$concursos);
 	}
 
-public function post_buscaconcursante()
-{
-$nombre = Input::get('artesanombre');
-$paterno = Input::get('artesapaterno');
-$materno = Input::get('artesamaterno');
-$fecha= Input::get('fechanace');
+	public function post_buscaconcursante(){
+		$nombre = Input::get('artesanombre');
+		$paterno = Input::get('artesapaterno');
+		$materno = Input::get('artesamaterno');
+		$fecha= Input::get('fechanace');
 
-$persona = Persona::where('nombre','like','%'.$nombre.'%','and')
-->where('nombre','like','%'.$paterno.'%','and')
-->where('nombre','like','%'.$materno.'%')
-->where('fechanacimiento','=',$fecha)->first();
+		$persona = Persona::where('nombre','like','%'.$nombre.'%','and')
+		->where('nombre','like','%'.$paterno.'%','and')
+		->where('nombre','like','%'.$materno.'%')
+		->where('fechanacimiento','=',$fecha)->first();
+		if($persona){
+			$persona->artesano;
+			return Response::json($persona);
+		}
+		else
+			return Response::json(array('error'=>true));
+	}
+	public function post_personaconcursos(){
+		if(Input::get('idartesano') == "")
+			$persona = Persona::find(Input::get('idpersona'));
+		else
+			$persona = Artesano::find(Input::get('idartesano'));
 
+		if($persona->Concursos()->where('concurso_id','=',Input::get('concid')))
+			return Response::json(array('error'=>true));
+		
+		$persona->Concursos()->attach(Input::get('concid'),array('categoria' => Input::get('categoria'),
+			'pieza' => Input::get('pieza'),'costounitario' => Input::get('costo'),'avaluo' => Input::get('avaluo'),
+			'entregopieza' => Input::get('entrego'),'calidad' => Input::get('calidad'),
+			'recibio' => Input::get('recibio'),'fecharegistro' => date('Y-m-d'),'observaciones' => Input::get('observ')));
 
-		return Response::json($persona);
-
+		return Response::json(array('success'=>true));
 	}
 }
-
