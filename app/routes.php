@@ -64,6 +64,8 @@ Route::post('buscaConcurso','RegistroenConcursoController@buscaConcurso');
 Route::get('/personaConcurso','RegistroenConcursoController@get_nuevo');
 Route::post('curp','RegistroenConcursoController@post_Curp');
 Route::post('personaConcurso','RegistroenConcursoController@post_nuevo');
+Route::post('personaConcurso2','RegistroenConcursoController@post_personaconcursos');
+
 Route::post('buscaconcursante','RegistroenConcursoController@post_buscaconcursante');
 
 
@@ -71,6 +73,8 @@ Route::get('editarEventos','editarEventoController@get_nuevo');
 
 Route::get('ArtesanoEnFeria','ArtesanoEnFeriaController@get_ArtesanoEnFeria');
 Route::post('ArtesanoEnFeria','ArtesanoEnFeriaController@buscar');
+Route::get('ArtesanoEnTaller','RegistroenTallerController@get_nuevo');
+
 
 
 

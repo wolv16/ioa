@@ -74,7 +74,7 @@
       		@if(isset($concursos))
       		<div class="bg-orga col-md-12 text-center">CONCURSOS PRÓXIMOS</div>
         	@foreach($concursos as $concurso)
-            <div class="container bg-evento col-md-12">
+            <div class="container bg-evento col-md-12 onClick="update('{{ $concurso->id }}')"">
             <div class="col-md-7">
            	<p id='idconc' class='hidden'>{{$concurso->id}}</p>
               
@@ -169,5 +169,10 @@
     });
 
 		});
+</script>
+<script type="text/javascript">
+function update(id){
+	
+}
 </script>
 @stop
