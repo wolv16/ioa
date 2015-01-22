@@ -24,16 +24,14 @@ Route::get('/base2',function()
 });
 
 
-Route::get('users', function()
-{
-    $users = User::all();
+Route::controller('users', 'UsersController');
 
-    return View::make('users')->with('users', $users);
-});
-
-
-
-
+Route::get('/', array('before' => 'guest', function(){
+	return View::make('login/login');
+}));
+Route::post('login', 'UserLogin@user');
+Route::get('logout', 'UserLogin@logOut');
+Route::controller('settings', 'SettingsController');
 
 Route::get('artesano','AltaArtesanoController@get_nuevo');
 Route::post('artesano/registro','AltaArtesanoController@post_nuevo');
@@ -55,9 +53,14 @@ Route::get('por','AltaArtesanoController@get_nuevopor');
 Route::post('por/registro','AltaArtesanoController@post_nuevopor');
 
 Route::post('artesano/municipio','selectmunicipiosController@post_mun');
+Route::post('editarArtesano/municipio','selectmunicipiosController@post_mun');
 
+Route::get('verArtesano','EditarArtesanoController@ver');
+Route::post('verArtesano','EditarArtesanoController@buscar');
 Route::get('editarArtesano','EditarArtesanoController@editar');
-Route::post('editarArtesano','EditarArtesanoController@buscar');
+Route::post('editarArtesano/update','EditarArtesanoController@update');
+Route::post('editarArtesano','EditarArtesanoController@buscar2');
+
 
 Route::post('buscaConcurso','RegistroenConcursoController@buscaConcurso');
 
@@ -74,6 +77,7 @@ Route::get('editarEventos','editarEventoController@get_nuevo');
 Route::get('ArtesanoEnFeria','ArtesanoEnFeriaController@get_ArtesanoEnFeria');
 Route::post('ArtesanoEnFeria','ArtesanoEnFeriaController@buscar');
 Route::get('ArtesanoEnTaller','RegistroenTallerController@get_nuevo');
+Route::post('ArtesanoEnTaller','RegistroenTallerController@buscar');
 
 
 

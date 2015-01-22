@@ -151,6 +151,7 @@ class AltaArtesanoController extends BaseController {
 		$documento -> persona_id = $personaArtesano->id;
 		$documento -> save();
 	}
+return Response::json($personaArtesano);
 }
 
 	public function post_nuevopor()

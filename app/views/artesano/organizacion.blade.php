@@ -44,7 +44,7 @@
 	        </div>
 	        @elseif(($status == 'ok_create'))
 	        <div id="error" style="margin-top:10px;">
-	            <p class="alert alert-success"><i class="fa fa-check-square-o fa-lg"></i> Operacion completada correctamente
+	            <p class="alert alert-success"><i class="fa fa-check-square-o fa-lg"></i> Operacion completada correctamente, ahora puedes registrar artesanos en esta organización
 	            </p>
 	        </div>
 	        @endif

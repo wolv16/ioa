@@ -6,7 +6,7 @@
 		<div class="container wellr"> 
 			<div class="col-sm-12 bg-titulo">EDITAR EVENTOS</div>
 		
-			<div class="col-sm-5 wellr">
+			<div class="col-sm-5 col-md-offset-1 wellr">
 
 				<div class="col-sm-12">
 					<div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -37,8 +37,7 @@
 					{{ Form::text('maestro', null, array('placeholder' => 'Nombre del maestro','class' => 'form-control mayuscula')) }} 
 				</div>
 		
-
-				<div class="col-md-12">	
+	
 				<div class="form-group col-sm-12 fecha">
 				    {{ Form::label('fecha1', 'FECHA DE INICIO',array('class' => 'control-label')) }}
 				    <div class="input-group date" id="datetimePicker1">
@@ -47,7 +46,7 @@
 				    </div>
 				</div>
 			
-			<div class="form-group" style="top: 13px !important;">
+				<div class="form-group" style="top: 13px !important;">
 				<button id="found" type="submit" class="btn btn-primary pull-right">
 				<span class="glyphicon glyphicon-search"></span> 
 					Buscar 
@@ -55,7 +54,7 @@
 				</div>
 	
 				{{Form::close()}}
-			</div>
+			
 			</div>
 
 	
@@ -128,13 +127,81 @@
 			
 
 
-	<div class="col-sm-7 pull-right">
-		<div class="col-md-12">
+	<div class="col-sm-6">
 		
-		
+		<div class="pull-left col-md-10 hidden" id="concursos">
+      		@if(isset($concursos))
+      			<div class="bg-orga col-md-12 text-center">CONCURSOS PRÓXIMOS</div>
+        	@foreach($concursos as $concurso)
+			    <div class="container bg-evento col-md-12">
+			    <div class="col-md-7">
+		        <p id='idferia' class='hidden'>{{$concurso->id}}</p>
+				<h5><i class="fa fa-trophy fa-lg pull-left"></i><strong>{{$concurso->nombre}}</strong></h5>
+	            <h5>FECHA: {{$concurso->fecha}}</h5>
+	            <h5>NIVEL: {{$concurso->nivel}}</h5>
+	            <h5>DÍA DE PREMIACIÓN: {{$concurso->premiacion}}</h5>
+	      		</div>
+			    <div class="col-md-5">
+			    <img style="border: 0pt; margin-left: 0px; margin-bottom: 10px; margin-top: 15px;" src="./imgs/event5.png"></img>
+			    </div>
+	           	</div>
+          	@endforeach    
+      		@endif
+    	</div>
 
-		</div>
+    	<div class="pull-left col-md-10" id="ferias">
+    	    @if(isset($ferias))
+    	    <div class="bg-orga col-md-12 text-center">FERIAS PRÓXIMAS</div>
+    	    @foreach($ferias as $feria)
+	            <div class="container bg-evento col-md-12">
+	            	<div class="col-md-12">
+	            	<p id='idconcu' class='hidden'>{{$feria->id}}</p>
+		              
+		            <h4><i class="fa fa-chain-broken fa-lg pull-left"></i>{{ $feria->nombre }}</h4>
+		          	</div>
+		          	<div class="col-md-6">
+		              <h5>LUGAR: {{$feria->lugar}}</h5>
+		              <h5>TIPO: {{$feria->tipo}}</h5>
+		              <h5>INICIO: {{$feria->fechainicio}}</h5>
+		              <h5>FIN: {{$feria->fechafin}}</h5>
+		              
+	          		</div>
+	              	<div class="col-md-5" style="margin-left:0px">
+	              		<span class="fa-stack fa-2x">
+	              		<i class="fa fa-group fa-4x"></i></span>
+	          		</div>            
+	            </div>
+    	    @endforeach    
+    	    @endif
+    	</div>
+
+
+    	<div class="pull-left col-md-10 hidden" id="talleres">
+	    	@if(isset($talleres))
+	      	<div class="bg-orga col-md-12 text-center">TALLERES PRÓXIMOS </div>
+	        @foreach($talleres as $taller)
+	            <div class="container bg-evento col-md-12">
+	            <div class="col-md-12">
+	            <p id='idtaller' class='hidden'>{{$taller->id}}</p>
+		        <h4><i class="fa fa-joomla fa-lg pull-left"></i>{{ $taller->nombre }}</h4>
+		        </div>
+		        <div class="col-md-6">
+		            <h5>MAESTRO: {{$taller->maestro}}</h5>
+		            <h5>INICIO: {{$taller->fechainicio}}</h5>
+		            <h5>FIN: {{$taller->fechafin}}</h5>
+		              
+	          	</div>
+	            <div class="col-md-5" style="margin-left:30px">
+	              	<span class="fa-stack fa-2x">
+	              	<i class="fa fa-stack-overflow fa-3x"></i></span>
+	          		</div>            
+	            </div>
+	        @endforeach    
+	      	@endif
+	    </div>
+
 	</div>
+
 </div>
 		
 		@endsection
@@ -277,21 +344,28 @@ $('#buscaConcurso').bootstrapValidator({
       })
 $('#12').click(function(){
 	$('#buscaFeria').removeClass('hidden');
+	$('#ferias').removeClass('hidden');
 	$('#buscaConcurso').addClass('hidden');
 	$('#buscaTaller').addClass('hidden');
+	$('#concursos').addClass('hidden');
+	$('#talleres').addClass('hidden');
 });
 
 $('#123').click(function(){
 	$('#buscaConcurso').removeClass('hidden');
+	$('#concursos').removeClass('hidden');
 	$('#buscaTaller').addClass('hidden');
 	$('#buscaFeria').addClass('hidden');
-
+	$('#ferias').addClass('hidden');
+	$('#talleres').addClass('hidden');
 });
 $('#1234').click(function(){
 	$('#buscaTaller').removeClass('hidden');
+	$('#talleres').removeClass('hidden');
 	$('#buscaFeria').addClass('hidden');
 	$('#buscaConcurso').addClass('hidden');
-
+	$('#ferias').addClass('hidden');
+	$('#concursos').addClass('hidden');
 });
 $('#datetimePicker1').on('dp.change dp.show', function(e) {
         $('#buscarartesano').bootstrapValidator('revalidateField', 'fecha1');

@@ -4,62 +4,62 @@
  
 @section('contenido')
 	<div class="container wellr">
-		<div class="pull-left col-md-4" id="concursos">
+		<div class="pull-left col-sm-4" id="concursos">
       		@if(isset($concursos))
-      			<div class="bg-orga col-md-12 text-center">CONCURSOS PRÓXIMOS</div>
+      			<div class="bg-orga col-sm-12 text-center">CONCURSOS PRÓXIMOS</div>
         		@foreach($concursos as $concurso)
-		            <div class="container bg-evento col-md-12">
-		            	<div class="col-md-7">
+		            <div class="container bg-evento col-sm-12">
+		            	<div class="col-sm-7">
 	           				<p id='idconc' class='hidden'>{{$concurso->id}}</p>
 				            <h5><i class="fa fa-trophy fa-lg pull-left"></i><strong>{{$concurso->nombre}}</strong></h5>
 				            <h5>FECHA: {{$concurso->fecha}}</h5>
 				            <h5>NIVEL: {{$concurso->nivel}}</h5>
 				            <h5>DÍA DE PREMIACIÓN: {{$concurso->premiacion}}</h5>
 			          	</div>
-		              	<div class="col-md-5">
+		              	<div class="col-sm-5">
 		              		<img style="border: 0pt; margin-left: 0px; margin-bottom: 10px; margin-top: 15px;" src="./imgs/event5.png"></img>
 		          		</div>
             		</div>
           		@endforeach    
       		@endif
     	</div>
-		<div class="col-md-4 col-md-offset-2 wellr" style="text-align:center;">
-			<img id="123" class="botones" title="Artesano" src="./imgs/nueva.png"></img>
+		<div class="col-sm-4 col-sm-offset-2 wellr" style="text-align:center;">
+			<img id="123" class="botones elegido" title="Artesano" src="./imgs/nueva.png"></img>
 			<img id="1234"class="botones" style="border: 0pt; margin-left: 0px; margin-bottom: 10px;" title="Persona" src="./imgs/inscrito.png"></img>
 		</div>	
 <!-- /////////////////-->		
-		<div class="col-md-8 pull-right wellr" id="divalta">
-			<div class="bg-orga col-md-12 text-center">DATOS DEL PARTICIPANTE</div>
-			{{ Form::open(array('url' => 'personaConcurso','role' => 'form','id' => 'formalta','class' => 'class','data-toggle' => 'validator')) }}
-				<div class="col-md-12">	
-					<div class="col-md-8 form-group">	
+		<div class="col-sm-8 pull-right wellr" id="divalta">
+			<div class="bg-orga col-sm-12 text-center">DATOS DEL PARTICIPANTE</div>
+			{{ Form::open(array('url' => 'personaConcurso','role' => 'form','id' => 'formalta','data-toggle' => 'validator')) }}
+				<div class="col-sm-12">	
+					<div class="col-sm-8 form-group">	
 						{{ Form::label ('nombre', 'Nombre Completo',array('class' => 'control-label')) }}
 						{{ Form::text('nombre', null, array('placeholder' => 'Nombre - - ApellidoPaterno - - ApellidoMaterno','class' => 'form-control mayuscula')) }}
 					</div>
-					<div class="col-md-3 form-group">
+					<div class="col-sm-3 form-group">
 						{{ Form::label('sexo', 'Sexo',array('class' => 'control-label')) }} 
 						{{Form::select('sexo', array('' => 'Seleccione','Masculino' => 'Masculino','Femenino' => 'Femenino',), null, array('class' =>'form-control'))}}
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="form-group col-md-4 fecha">
+				<div class="col-sm-12">
+					<div class="form-group col-sm-4 fecha">
 			          {{ Form::label('fechanace', 'fechanace',array('class' => 'control-label')) }}
 			          <div class="input-group date" id="datetimePicker">
 			            {{ Form::text('fechanace', null, array('class' => 'form-control','placeholder' => 'YYYY-MM-DD', 'data-date-format' => 'YYYY-MM-DD')) }}
 			            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 			          </div>
 			        </div>
-					<div class="col-md-3 form-group">
+					<div class="col-sm-3 form-group">
 						{{ Form::label('grupoetnico', 'Grupo Étnico',array('class' => 'control-label')) }}
 						{{ Form::select('grupoetnico', $grupos, null, array('class' => 'form-control')) }}
 					</div>
 				</div>	
-				<div class="col-md-12">
-					<div id="idcurp" class="col-md-5 form-group">	
+				<div class="col-sm-12">
+					<div id="idcurp" class="col-sm-5 form-group">	
 						{{ Form::label('curp', 'CURP') }}
 						{{ Form::text('curp', null, array('id' => 'curp', 'placeholder' => 'Ingrese CURP','class' => 'form-control')) }}
 					</div>
-					<div class="col-md-7 form-group">
+					<div class="col-sm-7 form-group">
 						{{ Form::label('domicilio', 'Domicilio') }}
 						<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-home"></i></div>
@@ -67,22 +67,22 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="col-md-4 form-group">
+				<div class="col-sm-12">
+					<div class="col-sm-4 form-group">
 						{{ Form::label('municipio', 'Municipio') }}
 						{{ Form::select('municipio',$municipios, null, array('class' => 'form-control','id'=>'selectmun')) }} 
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-sm-4">
 						{{ Form::label('localidad', 'Localidad') }}
 						{{ Form::select('localidad',array(), null, array('class' => 'form-control', 'id'=>'selectloc')) }}
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="form-group col-md-2">
+				<div class="col-sm-12">
+					<div class="form-group col-sm-2">
 						{{ Form::label('cp', 'C.P.') }}
 						{{ Form::text('cp', null, array('placeholder' => 'CP','class' => 'form-control')) }}
 					</div>
-					<div class="col-md-3 form-group">
+					<div class="col-sm-3 form-group">
 						{{ Form::label('lada', 'Lada') }}
 						<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-phone"></i></div>
@@ -90,7 +90,7 @@
 						</div>
 					</div>
 					
-					<div class="col-md-3 form-group">
+					<div class="col-sm-3 form-group">
 						{{ Form::label('tel', 'Telefono') }}
 						<div class="input-group">
 						<div class="input-group-addon"><i class="fa fa-phone"></i></div>
@@ -98,65 +98,72 @@
 						</div>
 					</div>
 
-					<div class="col-md-3 form-group">
+					<div class="col-sm-3 form-group">
 						{{ Form::label('rama', 'Rama Artesanal') }} <br>
 						{{Form::select('rama', $ramas, null, array('class' =>'form-control'))}}
 					</div>
 				</div>
-				<div class="col-md-12 wellr">
+				<div class="col-sm-12 wellr">
 					<h4>DATOS DE LA PIEZA</h4>
-					<div class="col-md-12">
-						<div class="col-md-4 form-group">	
+					<div class="col-sm-12">
+						<div class="col-sm-4 form-group">	
 							{{ Form::label('categoria', 'Categoría') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
 								{{ Form::textarea('categoria', null, array('placeholder' => 'Ingrese categoría','class' => 'form-control', 'size' => '3x2')) }}	
 							</div>
 						</div>
-						<div class="col-md-7 form-group">	
+						<div class="col-sm-7 form-group">	
 							{{ Form::label('pieza', 'Pieza') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
 							{{ Form::textarea('pieza', null, array('placeholder' => 'Descripción y nombre de la pieza','class' => 'form-control', 'size' => '3x2')) }}
 							</div>
 						</div>
-						<div class="col-md-3 form-group">
+						<div class="col-sm-3 form-group">
 							{{ Form::label('costo', 'Costo Aprox') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
 								{{ Form::text('costo', null, array('class' => 'form-control')) }}
 							</div>
 						</div>
-						<div class="col-md-3 form-group">
+						<div class="col-sm-3 form-group">
 							{{ Form::label('avaluo', 'Avaluo') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
 								{{ Form::text('avaluo', null, array('class' => 'form-control')) }}
 							</div>
 						</div>
+						<div class="col-sm-6 form-group">
+							{{ Form::label('entrego', 'Entregó') }}
+							<div class="input-group">
+							<div class="input-group-addon"><i class="fa fa-male"></i></div>
+							{{ Form::text('entrego', null, array('placeholder' => 'Nombre de quien entrega la pieza','class' => 'form-control')) }}
+							</div>
+						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-7 form-group">
+					<div class="col-sm-12">
+						<div class="col-sm-7 form-group">
 							{{ Form::label('observ', 'OBSERVACIONES') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-eye"></i></div>
 							{{ Form::textarea('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control', 'size' => '6x2')) }}<br>
 							</div>
 						</div>
-						<div class="col-md-2 form-group hidden">
+						<div class="col-sm-2 form-group hidden">
 							{{ Form::label('concid', 'CONCURSO') }}
 							{{ Form::text('concid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-4 form-group">
+					<div class="col-sm-12">
+						<div class="col-sm-4 form-group">
 							{{ Form::label('calidad', 'Calidad en general') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-star-half-o"></i></div>
 							{{ Form::text('calidad', null, array('placeholder' => 'Calidad de la pieza','class' => 'form-control')) }}
 							</div>
 						</div>
-						<div class="col-md-6 form-group">
+						<div class="col-sm-6 form-group">
 							{{ Form::label('recibio', 'Recibió') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-male"></i></div>
@@ -165,22 +172,22 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-12 form-group">
+				<div class="col-sm-12 form-group">
 					<button id="btonen" type="submit" class="btn btn-primary btn-lg pull-right">Registrar <span class="glyphicon glyphicon-ok"></span></button>
 				</div>
 			{{ Form::close() }}
 		</div>
 <!--////////////////////////-->
-		<div class="col-md-8 pull-right hidden" id="inscritod">
+		<div class="col-sm-8 pull-right hidden" id="inscritod">
 			<div class="col-sm-12 wellr">
 				{{ Form::open(array('id' => 'buscaconcursante', 'url' => 'buscaconcursante')) }}
-					<div class="col-md-12">
-						<div class="bg-orga col-md-12">BÚSQUEDA DEL CONCURSANTE</div>
-						<div class="col-md-6 form-group">
+					<div class="col-sm-12">
+						<div class="bg-orga col-sm-12">BÚSQUEDA DEL CONCURSANTE</div>
+						<div class="col-sm-6 form-group">
 							{{ Form::label('artesanombre', 'Nombre(s)',array('class' => 'control-label')) }}
 							{{ Form::text('artesanombre', null, array('placeholder' => 'introduce nombre','class' => 'form-control')) }}
 						</div>
-						<div class="col-md-6 form-group">
+						<div class="col-sm-6 form-group">
 							{{ Form::label('artesapaterno', 'Apellido paterno') }}
 							{{ Form::text('artesapaterno', null, array('placeholder' => 'introduce apellido paterno','class' => 'form-control')) }}
 						</div>
@@ -191,7 +198,7 @@
 					            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 				          	</div>
 						</div>
-						<div class="col-md-6 form-group">
+						<div class="col-sm-6 form-group">
 							{{ Form::label('artesamaterno', 'Apellido materno') }}
 							{{ Form::text('artesamaterno', null, array('placeholder' => 'introduce apellido materno','class' => 'form-control')) }}
 						</div>
@@ -204,33 +211,33 @@
 					</div>
 				{{Form::close()}}
 			</div>
-			<div id="inscrito_div" class="col-md-12 wellr hidden">
+			<div id="inscrito_div" class="col-sm-12 wellr hidden">
 				<h4>DATOS DE LA PIEZA</h4>
-				<div class="col-md-12">
+				<div class="col-sm-12">
 					{{ Form::open(array('url' => 'personaConcurso2','role' => 'form','id' => 'inscrito','class' => 'class')) }}
-						<div class="col-md-4 form-group">	
+						<div class="col-sm-4 form-group">	
 							{{ Form::label('categoria', 'Categoría') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-sitemap"></i></div>
 								{{ Form::textarea('categoria', null, array('placeholder' => 'Ingrese categoría','class' => 'form-control', 'size' => '3x2')) }}	
 							</div>
 						</div>
-						<div class="col-md-7 form-group">	
+						<div class="col-sm-7 form-group">	
 							{{ Form::label('pieza', 'Pieza') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-info-circle"></i></div>
 								{{ Form::textarea('pieza', null, array('placeholder' => 'Descripción y nombre de la pieza','class' => 'form-control', 'size' => '3x2')) }}
 							</div>
 						</div>
-						<div class="col-md-12">
-							<div class="col-md-3 form-group">
+						<div class="col-sm-12">
+							<div class="col-sm-3 form-group">
 								{{ Form::label('costo', 'Costo Aprox') }}
 								<div class="input-group">
 								<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
 									{{ Form::text('costo', null, array('class' => 'form-control')) }}
 								</div>
 							</div>
-							<div class="col-md-3 form-group">
+							<div class="col-sm-3 form-group">
 								{{ Form::label('avaluo', 'Avaluo') }}
 								<div class="input-group">
 								<div class="input-group-addon"><i class="fa fa-dollar"></i></div>
@@ -238,28 +245,28 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-7 form-group">
+						<div class="col-sm-7 form-group">
 							{{ Form::label('observ', 'OBSERVACIONES') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-eye"></i></div>
 							{{ Form::textarea('observ', null, array('placeholder' => 'Escriba las observaciones aquí','class' => 'form-control', 'size' => '6x2')) }}<br>
 							</div>
 						</div>
-						<div class="col-md-4 form-group">
+						<div class="col-sm-4 form-group">
 							{{ Form::label('calidad', 'Calidad en general') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-star-half-o"></i></div>
 							{{ Form::text('calidad', null, array('placeholder' => 'Calidad de la pieza','class' => 'form-control')) }}
 							</div>
 						</div>		
-						<div class="col-md-6 form-group">
+						<div class="col-sm-6 form-group">
 							{{ Form::label('recibio', 'Recibió') }}
 							<div class="input-group">
 							<div class="input-group-addon"><i class="fa fa-male"></i></div>
 							{{ Form::text('recibio', null, array('placeholder' => 'Nombre de quien recibe la pieza','class' => 'form-control')) }}
 							</div>
 						</div>
-						<div class="col-md-12 form-group">
+						<div class="col-sm-12 form-group">
 							<button type="submit" class="btn btn-primary btn-lg pull-right" id="btner">
 								 Registrar 
 								<span class="glyphicon glyphicon-ok"></span>
@@ -511,7 +518,9 @@ $(document).ready(function() {
 		$.post($(this).attr('action'), $(this).serialize(), function(json) {
 			console.log(json);
 			swal('Operacion completada correctamente', '', 'success');
+					$('#formalta').data('bootstrapValidator').resetForm(true);
 		}, 'json');
+
 	});
 
 	$('#inscrito').bootstrapValidator({
@@ -581,7 +590,9 @@ $(document).ready(function() {
 				swal('Error', 'Esta persona ya esta inscrita', 'error');
 			else
 				swal('Operacion completada correctamente', '', 'success');
+			$('#inscrito').data('bootstrapValidator').resetForm(true);
 		}, 'json');
+		
 	});
 
 	$('.mayuscula').focusout(function() {

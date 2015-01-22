@@ -37,6 +37,7 @@
 		            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 		          	</div>
 				</div>
+			</div>
 
 				<div class="form-group" style="top: 13px !important;">
 					<button id="found" type="submit" class="btn btn-primary pull-right">
@@ -44,7 +45,7 @@
 						Buscar 
 					</button>
 				</div>
-			</div>
+			
 
 		{{Form::close()}}
 	</div>

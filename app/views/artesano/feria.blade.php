@@ -102,7 +102,7 @@
 	          		</div>
 	              	<div class="col-md-5" style="margin-left:0px">
 	              		<span class="fa-stack fa-2x">
-	              		<i class="fa fa-group fa-4x"></i></span>
+	              		<i class="fa fa-star fa-4x"></i></span>
 	          		</div>            
 	            </div>
 	          @endforeach    

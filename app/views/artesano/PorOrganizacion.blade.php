@@ -10,7 +10,7 @@
 			<div class="col-md-12">
 				<p><h3>REGISTRO DE ARTESANOS POR ORGANIZACION</h3></p>
 			</div>
-			<div class="bg-orga col-md-12">DATOS ORGANIZACIÓN</div>
+			<div class="bg-orga col-md-12">DATOS DE LA ORGANIZACIÓN</div>
 		
 			<div class="col-xs-4 col-md-6 form-group">
 				{{ Form::label ('organización', 'NOMBRE ORGANIZACIÓN') }}
@@ -319,7 +319,7 @@
 				</div>
 				</div>
 			
-				<div class="col-md-1 form-group has-error">
+				<div class="col-md-1 form-group hidden">
 					{{ Form::label('orgid', 'Organización') }}
 					{{ Form::text('orgid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
 				</div>
@@ -351,7 +351,7 @@
 						{{ Form::label ('cargo', 'CARGO A OCUPAR') }}
 						{{ Form::select('cargo', array('' => 'Seleccione','Presidente' => 'Presidente','Secretario' => 'Secretario','Tesorero' => 'Tesorero','Vocal de control y vigilancia' => 'Vocal de control y vigilancia','Vocal 1' => 'Vocal 1', 'Vocal 2' => 'Vocal 2'), null, array('class' =>'form-control'))}}
 					</div>
-					<div class="col-md-1 has-error">
+					<div class="col-md-1 hidden">
 						{{ Form::label('comiteid', 'Comite') }}
 						{{ Form::text('comiteid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
 					</div>

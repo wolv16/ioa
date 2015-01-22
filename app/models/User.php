@@ -8,6 +8,8 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
+	public $timestamps = false;
+	protected $fillable = array('username','password','role_id');
 
 	/**
 	 * The database table used by the model.
@@ -23,4 +25,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public function Roles(){
+	return $this->belongTo('Role');
+}
 }
