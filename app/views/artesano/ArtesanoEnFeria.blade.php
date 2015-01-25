@@ -1,36 +1,38 @@
 
 @extends('layouts.baseartesanos')
-    @section('titulo') IOA-Talleres
+    @section('titulo') REGISTRO EN FERIAS
     @endsection 
-
+ 
 @section('contenido')
-<div class="container wellr">
-		
-	<div class="pull-left col-sm-4" id="talleres">
-	    @if(isset($talleres))
-	      <div class="bg-orga col-md-12 text-center">PRÓXIMOS TALLERES </div>
-	    @foreach($talleres as $taller)
-	    <div class="container bg-evento col-md-12">
-    	<div class="col-md-12">
-    	 <p id='idtaller' class='hidden'>{{$taller->id}}</p>
-          <h4><i class="fa fa-chain-broken fa-lg pull-left"></i>{{ $taller->nombre }}</h4>
-      	</div>
+	<div class="container wellr">
+			
 
-      	<div class="col-md-6">
-          <h5>MAESTRO: {{$taller->maestro}}</h5>
-          <h5>INICIO: {{$taller->fechainicio}}</h5>
-          <h5>FIN: {{$taller->fechafin}}</h5>
-          
-  		</div>
-      	<div class="col-md-5" style="margin-left:0px">
-      		<span class="fa-stack fa-2x">
-      		<i class="fa fa-group fa-4x"></i></span>
-  		</div>            
-    	</div>
-	    @endforeach    
-	    @endif
-	</div>
-
+		<div class="pull-left col-md-4" id="ferias">
+	    	@if(isset($ferias))
+	      		<div class="bg-orga col-md-12 text-center">PRÓXIMAS FERIAS</div>
+	        @foreach($ferias as $feria)
+	            <div class="container bg-evento col-md-12">
+	            <div class="col-md-12">
+	           	<p id='idferia' class='hidden'>{{$feria->id}}</p>
+		              
+		        <h4><i class="fa fa-chain-broken fa-lg pull-left"></i>{{ $feria->nombre }}</h4>
+		        </div>
+		        <div class="col-md-6">
+		            <h5>LUGAR: {{$feria->lugar}}</h5>
+		            <h5>TIPO: {{$feria->tipo}}</h5>
+		            <h5>INICIO: {{$feria->fechainicio}}</h5>
+		            <h5>FIN: {{$feria->fechafin}}</h5>
+		              
+	          	</div>
+	            <div class="col-md-5" style="margin-left:0px">
+	              	<span class="fa-stack fa-2x">
+	              	<i class="fa fa-star fa-4x"></i></span>
+	          	</div>            
+	            </div>
+	        @endforeach    
+	      	@endif
+	    </div>
+				
 		<div class="col-md-6 col-md-offset-1">
 		<div class="col-sm-12 wellr">
 		<div class="bg-orga col-md-12" style="margin-top:10px; text-align:center;">BUSCAR ARTESANOS</div>
@@ -74,7 +76,7 @@
 			<div class="col-sm-12">
 
 				<div class="form-group" style="top: 13px !important;">
-					<button type="submit" class="btn btn-ioa pull-right">
+					<button id="found" type="submit" class="btn btn-ioa pull-right">
 						<span class="glyphicon glyphicon-search"></span> 
 						Buscar 
 					</button>
@@ -84,55 +86,55 @@
 
 				{{Form::close()}}
 			
+
+	<div class="col-sm-12 pull-right hidden" id="artesano">
+		{{ Form::open(array('url' => 'ArtesanoEnFeria2','class'=>"form-horizontal",'id'=>'registrar')) }}
+
+		<div class="bg-orga col-md-12">ARTESANO</div>
+
+		<div class="col-md-12">
 		
+			<h4>
+			<label id="nombre" class="elementos"></label>
+			</h4>
 
-		<div class="col-sm-12 pull-right hidden" id="artesano">
-			{{ Form::open(array('url' => 'ArtesanoEnTaller2','class'=>"form-horizontal",'id'=>'registrar')) }}
+			<h4>
+			<label id="nace" class="elementos"></label>
+			</h4>
 
-			<div class="bg-orga col-md-12">ARTESANO</div>
+			<h4>
+			<label id="sexo" class="elementos"></label>
+			</h4>
 
-			<div class="col-md-12">
-			
-				<h4>
-				<label id="nombre" class="elementos"></label>
-				</h4>
+			<h4>
+			<label id="curp" class="elementos"></label>
+			</h4>
 
-				<h4>
-				<label id="nace" class="elementos"></label>
-				</h4>
-
-				<h4>
-				<label id="sexo" class="elementos"></label>
-				</h4>
-
-				<h4>
-				<label id="curp" class="elementos"></label>
-				</h4>
-
-				<div class="col-sm-2 form-group hidden">
-				{{ Form::label('tallerid', 'tall') }}
-				{{ Form::text('tallerid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
-				</div>
-				<div class="col-sm-2 form-group hidden">
+			<div class="col-sm-2 form-group hidden">
+				{{ Form::label('feriaid', 'fer') }}
+				{{ Form::text('feriaid', null, array('placeholder' => 'Id','class' => 'form-control')) }}
+			</div>
+			<div class="col-sm-2 form-group hidden">
 				{{ Form::label('artesanoid', 'art') }}
 				{{ Form::text('artesanoid', null, array('id'=>'artesanoid','placeholder' => 'Id','class' => 'form-control')) }}
-				</div>
-
-				<div class="form-group" style="top: 13px !important;">
-					<button id="found" type="submit" class="btn btn-ioa pull-right">
-					<span class="glyphicon glyphicon-ok"></span> 
-							Registrar 
-					</button>
-				</div>
-
 			</div>
-			{{Form::close()}}
+
+			<div class="form-group" style="top: 13px !important;">
+				<button type="submit" class="btn btn-ioa pull-right">
+				<span class="glyphicon glyphicon-ok"></span> 
+						Registrar 
+				</button>
+			</div>
 
 		</div>
+		{{Form::close()}}
+
+</div>
 		</div>		
-		</div>
-	
-	</div>
+</div>
+
+</div>
+
 @stop
 
 @section('scripts')
@@ -147,9 +149,11 @@
 	}
 </style>
 <script src="js/bootstrapValidator.js" type="text/javascript"></script>
-	<script src="js/es_ES.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
+<script src="js/es_ES.js" type="text/javascript"></script>
+	
+<script type="text/javascript">
+			$(document).ready(function() {
+
 			$('#datetimePicker').datetimepicker({
 		        language: 'es',
 		        pickTime: false
@@ -197,49 +201,51 @@
 
 		        }
 		    })
-		    
+
 .on('success.form.bv', function(e) {
 	            e.preventDefault();
 				$.post($(this).attr('action'), $(this).serialize(), function(json) {
 					console.log(json);
 					$('#artesano').removeClass("hidden");
-					$('#nombre').text(json.persona.nombre);
-					$('#nace').text(json.persona.fechanacimiento);
-					$('#sexo').text(json.persona.sexo);
-					$('#curp').text(json.persona.curp);
-					$('#artesanoid').val(json.id);
+						$('#nombre').text(json.persona.nombre);
+						$('#nace').text(json.persona.fechanacimiento);
+						$('#sexo').text(json.persona.sexo);
+						$('#curp').text(json.persona.curp);
+						$('#artesanoid').val(json.id);
 				}, 'json').fail(function(){
 					swal('Error','No se encontró el artesano','error');
 				});
 			});
+
+		$('#datetimePicker1').on('dp.change dp.show', function(e) {
+        $('#buscarartesano').bootstrapValidator('revalidateField', 'fechanace');
+    });
+
+
 $('#registrar').submit( function(e) {
-        e.preventDefault();
-        if($('[name = tallerid').val() == "")
-        	swal('Error', 'Aun no seleccionas un Taller', 'error');
-        else{
+    e.preventDefault();
+    if($('[name = feriaid').val() == "")
+       	swal('Error', 'Aun no seleccionas una Feria', 'error');
+    else{
 		$.post($(this).attr('action'), $(this).serialize(), function(json) {
-			console.log(json);
-			if(json.error)
-				swal('Error', 'Este artesano ya esta inscrito en este taller', 'error');
-			else{
-				swal('Operacion completada correctamente', '', 'success');
-				$('#buscarartesano').data('bootstrapValidator').resetForm(true);
-				$('#artesano').addClass("hidden");
-			}
+		console.log(json);
+		if(json.error)
+			swal('Error', 'Este artesano ya esta inscrito en esta feria', 'error');
+		else{
+			swal('Operacion completada correctamente', '', 'success');
+			$('#buscarartesano').data('bootstrapValidator').resetForm(true);
+			$('#artesano').addClass("hidden");
+		}
 			$('#found').prop('disabled','disabled');
 		}, 'json');
 		}
 	});
-$('.mayuscula').focusout(function() {
-$(this).val($(this).val().toUpperCase());
-			});
-$('#datetimePicker').on('dp.change dp.show', function(e) {
-});
 
 $('.bg-evento').click(function(){
 	$('.bg-evento').removeClass('sombreado-evento');
 	$(this).addClass('sombreado-evento');
-	$('[name=tallerid]').val($(this).find('#idtaller').text());
+	$('[name=feriaid]').val($(this).find('#idferia').text());
+	$('#registrar').bootstrapValidator('revalidateField', 'feriaid');
 	$('#found').removeAttr('disabled',false);
 });
 	$('#datetimePicker').on('dp.change dp.show', function(e) {
@@ -247,5 +253,11 @@ $('.bg-evento').click(function(){
     });
 
 });
+
+
+
+
 </script>
+
+
 @stop

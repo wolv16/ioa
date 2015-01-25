@@ -240,6 +240,11 @@ color:white;
 background:     #3b2413;
 }
 
+.btn-ioa {
+  color: #ffffff;
+  background-color: #774723;
+  border-color: #3B2413;
+}
 .sf-menu ul {
     border-right:1px solid #7d652b;
     border-bottom:1px solid #E0DDBD;

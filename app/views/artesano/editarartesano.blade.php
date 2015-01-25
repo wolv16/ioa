@@ -40,7 +40,7 @@
 			</div>
 
 				<div class="form-group" style="top: 13px !important;">
-					<button id="found" type="submit" class="btn btn-primary pull-right">
+					<button id="found" type="submit" class="btn btn-ioa pull-right">
 						<span class="glyphicon glyphicon-search"></span> 
 						Buscar 
 					</button>
@@ -52,6 +52,16 @@
 
 <div class="pull-left col-md-3 hidden" id="documentos">      
 </div>
+
+	<div class="col-sm-2 col-sm-offset-2 hidden wellr botones pull-right" id="historial">
+		<div class="col-sm-12" style="text-align:center;">
+		{{ Form::label('', 'Historial',array('class' => 'control-label')) }}
+		<div class="col-md-5">
+	        <span class="fa-stack fa-2x">
+	        <i class="fa fa-book fa-2x"></i></span>
+	    </div> 			
+		</div>	
+	</div>
 
 
 	<div class="col-sm-5 pull-right hidden" id="datitos">
@@ -162,6 +172,10 @@
 		</div>
 
 </div>
+
+<div class="pull-right col-sm-8 hidden" id="concursos">
+
+</div>
 		
 		@endsection
 
@@ -229,9 +243,14 @@
 		    })
 			.on('success.form.bv', function(e) {
 	            e.preventDefault();
+	            
 				$.post($(this).attr('action'), $(this).serialize(), function(json) {
 					console.log(json);
-					$('#datitos, #documentos').removeClass("hidden");
+					$.each(json,function(index,concursos){
+						console.log(concursos);
+						$('#concursos').append('<h1>'+concursos+'</h1>');
+					 });
+					$('#datitos, #documentos, #historial').removeClass("hidden");
 						$('#nombre').text(json.persona.nombre);
 						$('#nace').text(json.persona.fechanacimiento);
 						$('#sexo').text(json.persona.sexo);
@@ -261,6 +280,12 @@
         $('#buscarartesano').bootstrapValidator('revalidateField', 'fechanace');
     });
 
+$('#historial').click(function(){
+	$('#concursos').removeClass('hidden');
+	$('#datitos').addClass('hidden');
+	$('#documentos').addClass('hidden');
+
+});
 
 });
 	</script>
@@ -269,10 +294,10 @@
 function documentos(documents){
 	var html='<div class="bg-orga col-md-12 text-center">DOCUMENTOS DEL ARTESANO</div>';
 	$(documents).each(function(){
-		html += '<div class="container bg-docs col-md-12"><div class="col-md-12"><strong>'+this.nombre+'</strong><div class="col-md-12" style="text-align:center;"><img style="border: 0pt; margin-left: 0px; margin-bottom: 10px; margin-top: 15px; height: 200px; width: 150px;" src="'+this.ruta+'" onClick="window.open('+"'"+this.ruta+"'"+')";></img></div></div></div>';
+		html += '<div class="container bg-docs col-md-12"><div class="col-md-12"><strong>'+this.nombre+'</strong><div class="col-md-12" style="text-align:center;"><img style="border: 0pt; margin-left: 0px; margin-bottom: 0px; margin-top: 0px; height: 180px; width: 150px;" src="'+this.ruta+'" onClick="window.open('+"'"+this.ruta+"'"+')";></img></div></div></div>';
 	}); 
 	$('#documentos').html(html);
 }
-	
+
 </script>
 @stop 

@@ -8,7 +8,7 @@
 	<div class="container wellr">
 		
 
-		<div class="col-sm-5">
+		<div class="col-sm-5" id="altaller1">
 			<div class="col-md-12">
 			<form id="altaller" role="form" method="POST">
 
@@ -52,7 +52,7 @@
 		
 			<div class="col-md-11">
 				<div class="form-group col-sm-12">
-				<button type="submit" class="btn btn-primary pull-right">Registrar
+				<button type="submit" class="btn btn-ioa pull-right">Registrar
 				<span class="glyphicon glyphicon-ok"></span></button>
 				</div>
 			</div>
@@ -74,6 +74,7 @@
 	    	</div>
 		</div>
 
+
 		<div class="pull-left col-sm-4 col-sm-offset-2" id="talleres">
 	      @if(isset($talleres))
 	      <div class="bg-orga col-md-12 text-center">PRÓXIMOS TALLERES </div>
@@ -84,9 +85,9 @@
 		              <h4><i class="fa fa-chain-broken fa-lg pull-left"></i>{{ $taller->nombre }}</h4>
 		          	</div>
 		          	<div class="col-md-6">
-		              <h5>MAESTRO: {{$taller->maestro}}</h5>
-		              <h5>INICIO: {{$taller->fechainicio}}</h5>
-		              <h5>FIN: {{$taller->fechafin}}</h5>
+		              <h5 id='maes'>MAESTRO: {{$taller->maestro}}</h5>
+		              <h5 id='inic'>INICIO: {{$taller->fechainicio}}</h5>
+		              <h5 id='fina'>FIN: {{$taller->fechafin}}</h5>
 		              
 	          		</div>
 	              	<div class="col-md-5" style="margin-left:0px">
@@ -178,5 +179,7 @@
         $('#altaller').bootstrapValidator('revalidateField', 'fecha2');
     });
 		});
+
+
 </script>
 @stop

@@ -16,6 +16,12 @@
     {{HTML::style('css/bootstrap-datetimepicker.min.css');}}
     {{HTML::script('js/sweet-alert.js');}}
     {{HTML::style('css/sweet-alert.css');}}
+    {{HTML::script('js/chart/morris.min.js')}}
+    {{HTML::script('js/chart/raphael-min.js')}}
+    {{HTML::script('js/tables/jquery.dataTables.min.js')}}
+    {{HTML::script('js/dataTables.tableTools.min.js')}}
+    {{HTML::style('css/jquery.dataTables.css')}}
+    {{HTML::style('css/dataTables.tableTools.css')}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -51,12 +57,13 @@
                     <li id="menu-item-48188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48188">
                         <a href="organizacion" class="smcf-link sf-with-ul">REPORTES<span class="sf-sub-indicator"> »</span></a>
                     </li>
+                    <li id="menu-item-48187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48187">
+                        <a class="smcf-link sf-with-ul">
+                        <i onClick="window.open('imgs/perfil/1.jpeg)" class="fa fa-question"></i><span class="sf-sub-indicator"> »</span></a>
+                    </li>
                 </ul>
             </div>
-            <div class="izquierda">
-                
-                
-            </div>
+           
         </div><!-- #access -->
     </div><!-- #header-->
 </div>
